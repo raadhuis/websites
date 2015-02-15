@@ -48,8 +48,8 @@
 	$ch = curl_init("http://www.raadhuis.com/favicon.ico");
 
 # File marks:
-'0  1  7  ~/.gitignore
-'1  13  21  ~/.gitignore
+'0  1  9  ~/.gitignore
+'1  14  21  ~/.gitignore
 '2  29  10  ~/app/Config/core.php
 '3  15  0  ~/.htaccess
 '4  17  10  ~/.htaccess
@@ -59,8 +59,8 @@
 '8  2  0  ~/app/index.php
 
 # Jumplist (newest first):
--'  1  7  ~/.gitignore
--'  13  21  ~/.gitignore
+-'  1  9  ~/.gitignore
+-'  14  21  ~/.gitignore
 -'  29  10  ~/app/Config/core.php
 -'  1  0  ~/app/Config/core.php
 -'  15  0  ~/.htaccess
@@ -160,11 +160,11 @@
 # History of marks within files (newest to oldest):
 
 > ~/.gitignore
-	"	1	7
-	^	1	8
-	.	1	1
-	+	13	0
-	+	1	1
+	"	1	9
+	^	1	10
+	.	1	9
+	+	14	0
+	+	1	9
 
 > ~/app/Config/core.php
 	"	29	10
