@@ -1,0 +1,13 @@
+.viminfo
+.bash_history
+app/Config/core.php
+app/Config/database.php
+webstats
+app/tmp/logs/debug.log
+app/tmp/logs/error.log
+app/tmp/*
+app/webroot/files/*
+app/webroot/node_modules
+app/webroot/test
+app/webroot/phpMyAdmin-4.2.10.1-english/
+app/webroot/phpmyadmin
