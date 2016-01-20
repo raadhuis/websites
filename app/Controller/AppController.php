@@ -31,4 +31,59 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+
+    public $uses = array('User');
+
+    public $helpers = array('Form' => array('className' => 'Bs3Helpers.Bs3Form'),"MinifyHtml.MinifyHtml");
+
+    public $components = array(
+        'Auth' => array(
+            'loginRedirect' => array(
+                'controller' => 'websites',
+                'action' => 'index'
+            ),
+            'logoutRedirect' => array(
+                'controller' => 'checks',
+                'action' => 'publicview'
+            ),
+            'authenticate' => array(
+                'Blowfish' => array(
+                    'fields' => array('username'=>'email')
+                )
+            )
+        ),
+        'Session',
+        'Email',
+        'Cookie',
+//        'Security'
+    );
+
+    public function beforeFilter() {
+
+        $this->response->disableCache();
+
+        if (isset($this->request->data['_wysihtml5_mode'])) unset($this->request->data['_wysihtml5_mode']);
+
+        if ($this->Auth->loggedIn()) {
+            $this->set('my_displayname', $this->User->getNameById($this->Auth->user('id')));
+            $this->set('my_user_id', $this->Auth->user('id'));
+        }
+    }
+
+    public function hasRights($user, $rights=null) {
+
+        if(is_array($rights)) {
+            foreach($rights as $r){
+                if (isset($user['Role']['name']) && $user['Role']['name'] === $r) {
+                    return true;
+                }
+            }
+        } else {
+            if (isset($user['Role']['name']) && $user['Role']['name'] === $rights) {
+                return true;
+            }
+        }
+        // Default deny
+        return false;
+    }
 }

@@ -15,3 +15,7 @@
  */
 ?>
 <?php echo $content; ?>
+
+Met vriendelijke groet,
+
+RAADHUIS

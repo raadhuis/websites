@@ -16,4 +16,5 @@
 ?>
 <?php echo $this->fetch('content'); ?>
 
-This email was sent using the CakePHP Framework, http://cakephp.org.
+Copyright ICG Alkmaar 2015, All rights reserved.
+Our mailing address is: app@topeventsregioalkmaar.nl

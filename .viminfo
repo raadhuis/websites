@@ -11,8 +11,8 @@
 ~MSle0~/de
 
 # Command Line History (newest to oldest):
-:wq
 :q
+:wq
 :w
 :WQ
 
@@ -48,17 +48,20 @@
 	$ch = curl_init("http://www.raadhuis.com/favicon.ico");
 
 # File marks:
-'0  1  9  ~/.gitignore
-'1  14  21  ~/.gitignore
-'2  29  10  ~/app/Config/core.php
-'3  15  0  ~/.htaccess
-'4  17  10  ~/.htaccess
-'5  230  53  ~/app/Config/core.php
-'6  1  0  ~/app/index.php
-'7  33  0  ~/app/index.php
-'8  2  0  ~/app/index.php
+'0  79  0  ~/app/Config/database.php
+'1  1  9  ~/.gitignore
+'2  14  21  ~/.gitignore
+'3  29  10  ~/app/Config/core.php
+'4  15  0  ~/.htaccess
+'5  17  10  ~/.htaccess
+'6  230  53  ~/app/Config/core.php
+'7  1  0  ~/app/index.php
+'8  33  0  ~/app/index.php
+'9  2  0  ~/app/index.php
 
 # Jumplist (newest first):
+-'  79  0  ~/app/Config/database.php
+-'  1  0  ~/app/Config/database.php
 -'  1  9  ~/.gitignore
 -'  14  21  ~/.gitignore
 -'  29  10  ~/app/Config/core.php
@@ -158,6 +161,9 @@
 -'  1  0  ~/app/index.php
 
 # History of marks within files (newest to oldest):
+
+> ~/app/Config/database.php
+	"	79	0
 
 > ~/.gitignore
 	"	1	9
