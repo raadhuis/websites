@@ -35,6 +35,19 @@
                 <legend><?php echo __('Share add/this instellingen'); ?></legend>
                 <?php echo $this->Form->input('shareaanwezig', array('class' => 'form-control form-control-inline', 'type' => 'radio', 'label' => 'Share Aanwezig', 'options' => array('0' => 'Onbekend', '1' => 'Ja', '2' => 'Nee'))); ?>
                 <?php echo $this->Form->input('soortshare', array('class' => 'form-control form-control-inline', 'type' => 'radio', 'label' => 'Soort Share', 'options' => array('0' => 'Onbekend', '1' => 'share add/this', '2' => 'custom share'))); ?>
+                <?php echo $this->Form->input('sharestatus', array('class' => 'form-control form-control-inline', 'type' => 'radio', 'label' => 'Share status', 'options' =>
+                    array(
+                        '0' => 'Nog niets gedaan',
+                        '5' => 'Contact Opgenomen',
+                        '7' => 'Contact Opgenomen (reminder)',
+                        '1' => 'Klant Akkoord',
+                        '2' => 'In Betty ingevoerd',
+                        '6' => 'Update klaar nog niet gecommuniceerd',
+                        '8' => 'On Hold',
+                        '3' => 'Afgerond - uitgevoerd',
+                        '4' => 'Afgerond - niet uitgevoerd'
+                    )));
+                ?>
             </div>
 
         </div>

@@ -20,6 +20,7 @@
                     <th>MODX Versie</th>
                     <th class="text-center">Share Aanwezig</th>
                     <th class="text-center">Soort Share</th>
+                    <th class="text-center">Share Status</th>
                     <th class="actions"></th>
                 </tr>
                 </thead>
@@ -41,6 +42,18 @@
                             <?php if($website['Website']['soortshare'] == '1') { echo 'share/add this';} ?>
                             <?php if($website['Website']['soortshare'] == '2') { echo 'custom share';} ?>
                         </td>
+                        <td>
+                            <?php if($website['Website']['sharestatus'] == '0') { echo 'Nog niets gedaan';} ?>
+                            <?php if($website['Website']['sharestatus'] == '5') { echo 'Contact Opgenomen';} ?>
+                            <?php if($website['Website']['sharestatus'] == '7') { echo 'Contact Opgenomen (reminder)';} ?>
+                            <?php if($website['Website']['sharestatus'] == '1') { echo 'Klant Akkoord';} ?>
+                            <?php if($website['Website']['sharestatus'] == '2') { echo 'In Betty ingevoerd';} ?>
+                            <?php if($website['Website']['sharestatus'] == '6') { echo 'Update klaar nog niet gecommuniceerd';} ?>
+                            <?php if($website['Website']['sharestatus'] == '8') { echo 'On Hold';} ?>
+                            <?php if($website['Website']['sharestatus'] == '3') { echo 'Afgerond - uitgevoerd';} ?>
+                            <?php if($website['Website']['sharestatus'] == '4') { echo 'Afgerond - niet uitgevoerd';} ?>
+                            &nbsp;</td>
+
                         <td class="actions">
                             <?php echo $this->Html->link(__('Bewerk'), array('action' => 'edit', $website['Website']['id']), array('class' => 'btn btn-default')); ?>
                         </td>
