@@ -20,7 +20,7 @@
                         <div class="users form">
                             <?php echo $this->Form->create('User'); ?>
                             <fieldset>
-                                <? if ($role <> 'icgvisitor') { ?>
+                                <?php if ($role <> 'icgvisitor') { ?>
                                     <div class="row">
                                         <div class="col-md-3">
                                             <?php echo $this->Form->input('title_id', array('class' => 'form-control', 'label' => 'Aanhef')); ?>
@@ -40,15 +40,15 @@
                                             <?php echo $this->Form->input('email', array('label' => 'E-mailaddress', 'placeholder' => '')); ?>
                                         </div>
                                     </div>
-                                <? } else { ?>
+                                <?php } else { ?>
                                     <?php echo $this->Form->hidden('email', array('label' => 'E-mailaddress', 'placeholder' => '')); ?>
-                                <? } ?>
+                                <?php } ?>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <?= $this->Form->input('password', array('type' => 'password', 'label' => 'Wachtwoord')); ?>
+                                        <?php echo $this->Form->input('password', array('type' => 'password', 'label' => 'Wachtwoord')); ?>
                                     </div>
                                     <div class="col-md-6">
-                                        <?= $this->Form->input('cpassword', array('type' => 'password', 'label' => 'Bevestig wachtwoord')); ?>
+                                        <?php echo $this->Form->input('cpassword', array('type' => 'password', 'label' => 'Bevestig wachtwoord')); ?>
                                     </div>
                                 </div>
                                 <?php if (!isset($ident)) {
@@ -60,7 +60,7 @@
                                 <?php echo $this->Form->hidden('oldemail') ?>
                                 <?php echo $this->Form->hidden('ident', array('value' => $ident)) ?>
                                 <?php echo $this->Form->hidden('activate', array('value' => $activate)) ?>
-                                <?= $this->Form->submit('Uw Account activeren', array('class' => 'btn btn-primary btn-block')) ?>
+                                <?php echo $this->Form->submit('Uw Account activeren', array('class' => 'btn btn-primary btn-block')) ?>
                                 <?php echo $this->Form->end(); ?>
                         </div>
                     </div>

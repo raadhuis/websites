@@ -1,5 +1,5 @@
 <div class="users form">
-    <?= $this->Element('notloggedin_header', array('active' => 'products')); ?>
+    <?php echo $this->Element('notloggedin_header', array('active' => 'products')); ?>
     <div class="row">
         <div class="col-md-4 col-md-offset-4 bottom2">
             <h2 class="page-header text-center"><?php echo __('Please to meet you!'); ?></h2>
@@ -10,7 +10,7 @@
     </div>
     <div class="row">
         <div class="col-md-8 col-md-offset-2 bottom2">
-            <?= $this->Element('shop_header', array('step' => 2)); ?>
+            <?php echo $this->Element('shop_header', array('step' => 2)); ?>
         </div>
     </div>
 
@@ -46,7 +46,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <?= $this->Form->submit('Send Activation Email', array('class' => 'btn btn-primary btn-lg btn-block')) ?>
+                                <?php echo $this->Form->submit('Send Activation Email', array('class' => 'btn btn-primary btn-lg btn-block')) ?>
                                 <?php echo $this->Form->end(); ?>
                             </div>
                         </div>

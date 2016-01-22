@@ -1,4 +1,4 @@
-<?= $this->Element('title', array('icon' => 'web', 'title' => 'Websites')); ?>
+<?php echo $this->Element('title', array('icon' => 'web', 'title' => 'Websites')); ?>
 
 
 <div class="actions">

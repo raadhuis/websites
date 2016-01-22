@@ -1,4 +1,4 @@
-<?= $this->Element('title', array('icon' => 'web', 'title' => 'Check Categorieeen')); ?>
+<?php echo $this->Element('title', array('icon' => 'web', 'title' => 'Check Categorieeen')); ?>
 
 
 <!-- end row -->
@@ -37,7 +37,7 @@
                 <?php endforeach; ?>
                 </tbody>
             </table>
-            <?= $this->Element('pagination-footer') ?>
+            <?php echo $this->Element('pagination-footer') ?>
         </div>
     </div>
     <!-- end col md 9 -->

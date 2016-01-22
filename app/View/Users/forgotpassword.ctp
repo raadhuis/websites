@@ -21,8 +21,8 @@
                             <div class="users form">
                                 <?php echo $this->Form->create('User'); ?>
                                 <fieldset>
-                                    <?= $this->Form->input('email', array('label' => false, 'placeholder' => 'E-mailaddress')); ?>
-                                    <?= $this->Form->submit('E-mail mij zodat ik mijn wachtwoord kan achterhalen', array('class' => 'btn btn-primary')) ?>
+                                    <?php echo $this->Form->input('email', array('label' => false, 'placeholder' => 'E-mailaddress')); ?>
+                                    <?php echo $this->Form->submit('E-mail mij zodat ik mijn wachtwoord kan achterhalen', array('class' => 'btn btn-primary')) ?>
                                     <?php echo $this->Form->end(); ?>
                                 </fieldset>
                             </div>

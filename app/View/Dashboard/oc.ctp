@@ -6,7 +6,7 @@
 	</div><!-- end row -->
 	<div class="row">
         <div class="col-md-6">
-             <p>Welcome <?=$name?> to the registration module of ICG Alkmaar 2015. To add your personal applicant data and to purchase packages use the menu on the left.</p>
+             <p>Welcome <?php echo$name?> to the registration module of ICG Alkmaar 2015. To add your personal applicant data and to purchase packages use the menu on the left.</p>
 
              <p>You can send your questions about registrations to <a mailto="app@topeventsregioalkmaar.nl">app@topeventsregioalkmaar.nl</a></p>
              <p>See you in Alkmaar!</p>

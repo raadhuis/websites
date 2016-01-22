@@ -1,15 +1,15 @@
-<?= $this->Element('title', array('icon' => 'web', 'title' => 'Social Share')); ?>
+<?php echo $this->Element('title', array('icon' => 'web', 'title' => 'Social Share')); ?>
 
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
-            <? if ($isadmin) { ?>
+            <?php if ($isadmin) { ?>
                 <div class="panel-heading">
                     <div class="btn-group">
                         <?php echo $this->Html->link(__('Toevoegen'), array('action' => 'add'), array('escape' => false, 'class' => 'btn btn-primary')); ?>
                     </div>
                 </div>
-            <? } ?>
+            <?php } ?>
             <!-- /.panel-heading -->
             <table class="table table-striped">
                 <thead>
@@ -32,14 +32,14 @@
                         <td><?php echo h($website['Customer']['name']); ?>&nbsp;</td>
                         <td><?php echo h($website['Website']['modxversion']); ?>&nbsp;</td>
                         <td>
-                            <? if($website['Website']['shareaanwezig'] == '0') { echo 'onbekend';} ?>
-                            <? if($website['Website']['shareaanwezig'] == '1') { echo 'ja';} ?>
-                            <? if($website['Website']['shareaanwezig'] == '2') { echo 'nee';} ?>
+                            <?php if($website['Website']['shareaanwezig'] == '0') { echo 'onbekend';} ?>
+                            <?php if($website['Website']['shareaanwezig'] == '1') { echo 'ja';} ?>
+                            <?php if($website['Website']['shareaanwezig'] == '2') { echo 'nee';} ?>
                         </td>
                         <td>
-                            <? if($website['Website']['soortshare'] == '0') { echo 'onbekend';} ?>
-                            <? if($website['Website']['soortshare'] == '1') { echo 'share/add this';} ?>
-                            <? if($website['Website']['soortshare'] == '2') { echo 'custom share';} ?>
+                            <?php if($website['Website']['soortshare'] == '0') { echo 'onbekend';} ?>
+                            <?php if($website['Website']['soortshare'] == '1') { echo 'share/add this';} ?>
+                            <?php if($website['Website']['soortshare'] == '2') { echo 'custom share';} ?>
                         </td>
                         <td class="actions">
                             <?php echo $this->Html->link(__('Bewerk'), array('action' => 'edit', $website['Website']['id']), array('class' => 'btn btn-default')); ?>
@@ -48,7 +48,7 @@
                 <?php endforeach; ?>
                 </tbody>
             </table>
-            <?= $this->Element('pagination-footer') ?>
+            <?php echo $this->Element('pagination-footer') ?>
         </div>
     </div>
     <!-- end col md 9 -->

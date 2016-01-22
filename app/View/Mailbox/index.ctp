@@ -1,11 +1,11 @@
-<?= $this->Element('title', array('icon' => 'mail', 'title' => 'Help')); ?>
+<?php echo $this->Element('title', array('icon' => 'mail', 'title' => 'Help')); ?>
 
 
 <div class="container-fluid">
 
-    <? if ($total_count == 0) { ?>
+    <?php if ($total_count == 0) { ?>
         <h3>Geen bestaande conversaties aanwezig</h3>
-    <? } else {
+    <?php } else {
         ?>
         <!-- end row -->
 
@@ -17,11 +17,11 @@
                         <div class="btn-toolbar" role="toolbar" aria-label="...">
 
                             <div class="btn-group" role="group" aria-label="...">
-                                <? for ($i = 1; $i < $total_pages + 1; $i++) { ?>
+                                <?php for ($i = 1; $i < $total_pages + 1; $i++) { ?>
                                     <a type="button"
-                                       class="btn btn-default<? if ($current_page == $i) { ?> active<? } ?>"
-                                       href="/mailbox/index/<?= $i ?>"><?= $i ?></a>
-                                <? } ?>
+                                       class="btn btn-default<?php if ($current_page == $i) { ?> active<?php } ?>"
+                                       href="/mailbox/index/<?php echo $i ?>"><?php echo $i ?></a>
+                                <?php } ?>
                             </div>
 
                             <div class="btn-group">
@@ -43,7 +43,7 @@
                             ?>
                             <tr>
                                 <td><?php echo h($this->Time->timeAgoInWords($t['updated_at'])) ?>&nbsp;</td>
-                                <td><h4> <span class="label label-info"><?=$t['closed_by']?></span></h4><br />
+                                <td><h4> <span class="label label-info"><?php echo$t['closed_by']?></span></h4><br />
 
                                     <strong><?php echo h($t['title']) ?></strong> <?php echo h($t['summary']) ?>&nbsp;</td>
                                 <td><span class="label label-default">#<?php echo h($t['number']) ?></span></td>
@@ -56,11 +56,11 @@
                         <div class="btn-toolbar" role="toolbar" aria-label="...">
 
                             <div class="btn-group" role="group" aria-label="...">
-                                <? for ($i = 1; $i < $total_pages + 1; $i++) { ?>
+                                <?php for ($i = 1; $i < $total_pages + 1; $i++) { ?>
                                     <a type="button"
-                                       class="btn btn-default<? if ($current_page == $i) { ?> active<? } ?>"
-                                       href="/mailbox/index/<?= $i ?>"><?= $i ?></a>
-                                <? } ?>
+                                       class="btn btn-default<?php if ($current_page == $i) { ?> active<?php } ?>"
+                                       href="/mailbox/index/<?php echo $i ?>"><?php echo $i ?></a>
+                                <?php } ?>
                             </div>
 
                             <div class="btn-group">
@@ -72,6 +72,6 @@
             </div>
             <!-- end col md 9 -->
         </div>
-    <? } ?>
+    <?php } ?>
     <!-- end row -->
 </div>

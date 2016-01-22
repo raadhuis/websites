@@ -1,4 +1,4 @@
-<?= $this->Element('title', array('icon' => 'add', 'title' => 'Toevoegen Rapportage Categorie')); ?>
+<?php echo $this->Element('title', array('icon' => 'add', 'title' => 'Toevoegen Rapportage Categorie')); ?>
 
 <div class="checkcategories form">
     <?php echo $this->Form->create('Reportcategory'); ?>

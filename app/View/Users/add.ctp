@@ -13,7 +13,7 @@
         <div class="col-md-8">
     <?php echo $this->Form->create('User', array('role' => 'form')); ?>
     <?php echo $this->Form->hidden('userstatus_id', array('value' => 8)); ?>
-    <? if ($isadmin) { ?>
+    <?php if ($isadmin) { ?>
         <div class="row">
             <div class="col-md-6">
                 <?php echo $this->Form->input('customer_id', array('class' => 'form-control', 'placeholder' => 'Customer Id')); ?>
@@ -22,7 +22,7 @@
                 <?php echo $this->Form->input('role_id', array('class' => 'form-control', 'placeholder' => 'Role Id')); ?>
             </div>
         </div>
-    <? } ?>
+    <?php } ?>
     <div class="row">
         <div class="col-md-3">
             <?php echo $this->Form->input('title_id', array('class' => 'form-control', 'placeholder' => 'Title Id')); ?>

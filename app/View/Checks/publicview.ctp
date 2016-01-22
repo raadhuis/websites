@@ -1,4 +1,4 @@
-<?
+<?php
 $oldcategory = '';
 
 $arr = array(
@@ -85,12 +85,12 @@ endforeach;
             onderscheidend en maakt
             gebruik van zowel online als offline technieken om dit doel te bereiken. Wij staan voor kwaliteit. Om deze
             kwaliteit te waarborgen voldoet ons online werk altijd aan
-            onderstaande <?= $arr[$i] ?> algemene kwaliteitscriteria.
+            onderstaande <?php echo $arr[$i] ?> algemene kwaliteitscriteria.
         </p>
     </div>
 </div>
 <div class="container">
-    <?= $html ?>
+    <?php echo $html ?>
 </div>
 <div class="heading">
     <div class="container">

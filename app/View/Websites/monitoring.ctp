@@ -1,23 +1,23 @@
-<?= $this->Element('title', array('icon' => 'network_check', 'title' => 'Monitoring')); ?>
+<?php echo $this->Element('title', array('icon' => 'network_check', 'title' => 'Monitoring')); ?>
 
 
 
-<? if ($monitoring_inactive) { ?>
+<?php if ($monitoring_inactive) { ?>
     <p>
         Waarom monitoring.
     </p>
-<? } ?>
+<?php } ?>
 
 
 <?php echo $this->Form->create('Website'); ?>
 <?php echo $this->Form->hidden('id'); ?>
-<? if ($monitoring_inactive) { ?>
+<?php if ($monitoring_inactive) { ?>
     <?php echo $this->Form->hidden('uptimerobot_id'); ?>
-<? } ?>
+<?php } ?>
 <?php echo $this->Form->end(__('Activeer monitoring')); ?>
 
 
-<? if (!$monitoring_inactive) { ?>
+<?php if (!$monitoring_inactive) { ?>
 
     <?
     $alltimeuptimeratio = $monitoring->monitors->monitor[0]->alltimeuptimeratio;
@@ -72,7 +72,7 @@
             Chart.defaults.global.responsive = true;
 
             var data = {
-                labels: <?=$l?>,
+                labels: <?php echo$l?>,
                 datasets: [
                     {
                         label: "My First dataset",
@@ -82,7 +82,7 @@
                         pointStrokeColor: "#fff",
                         pointHighlightFill: "#fff",
                         pointHighlightStroke: "rgba(220,220,220,1)",
-                        data: <?=$a?>,
+                        data: <?php echo$a?>,
                             showXLabels: 10
                     }
                 ]
@@ -95,13 +95,13 @@
 
             var data = [
                 {
-                    value: <?=$alltimeuptimeratio?>,
+                    value: <?php echo$alltimeuptimeratio?>,
                     color: "green",
                     highlight: "#FF5A5E",
                     label: "Up"
                 },
                 {
-                    value: <?=100-$alltimeuptimeratio?>,
+                    value: <?php echo100-$alltimeuptimeratio?>,
                     color: "red",
                     highlight: "#5AD3D1",
                     label: "Down"
@@ -115,4 +115,4 @@
         })();
     </script>
 
-<? } ?>
+<?php } ?>

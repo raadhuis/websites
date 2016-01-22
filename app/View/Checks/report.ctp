@@ -1,4 +1,4 @@
-<?= $this->Element('title', array('icon' => 'check', 'title' => 'Rapportage voor '. $website['Website']['name'])); ?>
+<?php echo $this->Element('title', array('icon' => 'check', 'title' => 'Rapportage voor '. $website['Website']['name'])); ?>
 <?
 
 if($isadmin) {
@@ -32,10 +32,10 @@ if($isadmin) {
             <?php } ?>
             <tr>
                 <td width="20%"><h4><?php echo h($check['Check']['name']); ?></h4>
-                    <p><?=$check['Check']['description']?></p>
+                    <p><?php echo$check['Check']['description']?></p>
                 </td>
                 <td>
-                    <? if ($check['Check']['function']) { ?>
+                    <?php if ($check['Check']['function']) { ?>
                         <div id="result<?php echo h($check['Check']['id']); ?>"></div>
                         <script>
                             $(function () {
@@ -50,9 +50,9 @@ if($isadmin) {
                                 });
                             });
                         </script>
-                    <? } else { ?>
+                    <?php } else { ?>
 
-                    <? } ?>
+                    <?php } ?>
                 </td>
                 <td>
                     <div id="form<?php echo h($check['Check']['id']); ?>"><img src="/img/loading.gif" width="24px">

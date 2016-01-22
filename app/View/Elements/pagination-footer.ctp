@@ -20,9 +20,9 @@
                 <?php } ?>
         </div>
         <div class="col-md-2 text-right">
-            <?  if(isset($export) && $export==true){ ?>
-                <a href="/export/index/<?=substr($this->request->params['controller'],0,-1)?>" class="btn btn-default"><i class="fa fa-download"></i> Download CSV</a>
-            <? } ?>
+            <?php  if(isset($export) && $export==true){ ?>
+                <a href="/export/index/<?php echosubstr($this->request->params['controller'],0,-1)?>" class="btn btn-default"><i class="fa fa-download"></i> Download CSV</a>
+            <?php } ?>
         </div>
     </div>
 </div>

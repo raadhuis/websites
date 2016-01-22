@@ -1,15 +1,15 @@
-<?= $this->Element('title', array('icon' => 'web', 'title' => 'Website Updates')); ?>
+<?php echo $this->Element('title', array('icon' => 'web', 'title' => 'Website Updates')); ?>
 
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
-            <? if ($isadmin) { ?>
+            <?php if ($isadmin) { ?>
                 <div class="panel-heading">
                     <div class="btn-group">
                         <?php echo $this->Html->link(__('Toevoegen'), array('action' => 'add'), array('escape' => false, 'class' => 'btn btn-primary')); ?>
                     </div>
                 </div>
-            <? } ?>
+            <?php } ?>
             <!-- /.panel-heading -->
             <table class="table table-striped">
                 <thead>
@@ -37,27 +37,28 @@
                             <?php echo $this->element('truefalse', array('status' => isset($website['Customer']['User'][0]))); ?>
                         </td>
                         <td><?php echo h($website['Customer']['name']); ?>&nbsp;</td>
-                        <td><?= $website['Customer']['User']['name'] ?>&nbsp;</td>
+                        <td><?php echo $website['Customer']['User']['name'] ?>&nbsp;</td>
                         <td><?php echo h($website['Website']['modxversion']); ?>&nbsp;</td>
                         <td class="text-center">
-                            <? if($website['Website']['updatenoodzakelijk'] == '0') { echo '?';} ?>
-                            <? if($website['Website']['updatenoodzakelijk'] == '1') { echo 'ja';} ?>
-                            <? if($website['Website']['updatenoodzakelijk'] == '2') { echo 'nee';} ?>
+                            <?php if($website['Website']['updatenoodzakelijk'] == '0') { echo '?';} ?>
+                            <?php if($website['Website']['updatenoodzakelijk'] == '1') { echo 'ja';} ?>
+                            <?php if($website['Website']['updatenoodzakelijk'] == '2') { echo 'nee';} ?>
                             &nbsp;</td>
                         <td>
-                            <? if($website['Website']['klantakkoord'] == '0') { echo 'Nog niets gedaan';} ?>
-                            <? if($website['Website']['klantakkoord'] == '5') { echo 'Contact Opgenomen';} ?>
-                            <? if($website['Website']['klantakkoord'] == '7') { echo 'Contact Opgenomen (reminder)';} ?>
-                            <? if($website['Website']['klantakkoord'] == '1') { echo 'Klant Akkoord';} ?>
-                            <? if($website['Website']['klantakkoord'] == '2') { echo 'In Betty ingevoerd';} ?>
-                            <? if($website['Website']['klantakkoord'] == '6') { echo 'Update klaar nog niet gecommuniceerd';} ?>
-                            <? if($website['Website']['klantakkoord'] == '3') { echo 'Afgerond - uitgevoerd';} ?>
-                            <? if($website['Website']['klantakkoord'] == '4') { echo 'Afgerond - niet uitgevoerd';} ?>
+                            <?php if($website['Website']['klantakkoord'] == '0') { echo 'Nog niets gedaan';} ?>
+                            <?php if($website['Website']['klantakkoord'] == '5') { echo 'Contact Opgenomen';} ?>
+                            <?php if($website['Website']['klantakkoord'] == '7') { echo 'Contact Opgenomen (reminder)';} ?>
+                            <?php if($website['Website']['klantakkoord'] == '1') { echo 'Klant Akkoord';} ?>
+                            <?php if($website['Website']['klantakkoord'] == '2') { echo 'In Betty ingevoerd';} ?>
+                            <?php if($website['Website']['klantakkoord'] == '6') { echo 'Update klaar nog niet gecommuniceerd';} ?>
+                            <?php if($website['Website']['klantakkoord'] == '8') { echo 'On Hold';} ?>
+                            <?php if($website['Website']['klantakkoord'] == '3') { echo 'Afgerond - uitgevoerd';} ?>
+                            <?php if($website['Website']['klantakkoord'] == '4') { echo 'Afgerond - niet uitgevoerd';} ?>
                             &nbsp;</td>
                         <td class="text-center">
-                            <? if(!empty($website['Website']['note'])) { ?>
+                            <?php if(!empty($website['Website']['note'])) { ?>
                                 <i data-toggle="tooltip" data-placement="left" class="material-icons has-tip" title="<?php echo h($website['Website']['note']); ?>">comment</i>
-                            <? } ?>
+                            <?php } ?>
                         </td>
 
                         <td class="actions">
@@ -67,7 +68,7 @@
                 <?php endforeach; ?>
                 </tbody>
             </table>
-            <?= $this->Element('pagination-footer') ?>
+            <?php echo $this->Element('pagination-footer') ?>
         </div>
     </div>
     <!-- end col md 9 -->

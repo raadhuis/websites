@@ -18,9 +18,9 @@
                     <div class="panel-body">
                         <div class="users form">
                             <?php echo $this->Form->create('User'); ?>
-                            <?= $this->Form->input('email', array('label' => false, 'placeholder' => 'E-mailaddress')); ?>
-                            <?= $this->Form->input('password', array('label' => false, 'placeholder' => 'Wachtwoord')); ?>
-                            <?= $this->Form->submit('Log In', array('div' => false, 'class' => 'btn btn-primary')) ?> &nbsp;&nbsp;<a
+                            <?php echo $this->Form->input('email', array('label' => false, 'placeholder' => 'E-mailaddress')); ?>
+                            <?php echo $this->Form->input('password', array('label' => false, 'placeholder' => 'Wachtwoord')); ?>
+                            <?php echo $this->Form->submit('Log In', array('div' => false, 'class' => 'btn btn-primary')) ?> &nbsp;&nbsp;<a
                                 href="/users/forgotpassword/" rel="nofollow">Wachtwoord vergeten?</a>
                             <?php echo $this->Form->end(); ?>
                         </div>

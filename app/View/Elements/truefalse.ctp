@@ -1,4 +1,4 @@
-<?
+<?php
     switch ($status) {
         case "1":
             echo "<i class='material-icons'>done</i>";

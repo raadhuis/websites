@@ -25,7 +25,6 @@ if (isset($_SESSION['Auth']['User'])) {
     $isclient = ($_SESSION['Auth']['User']['Role']['name'] == 'admin');
 }
 
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -40,6 +39,7 @@ if (isset($_SESSION['Auth']['User'])) {
     <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
     <?php
+
     echo $this->Html->css('/dist/css/app');
     echo $this->Html->css('/dist/css/dashboard');
     echo $this->Html->meta('icon');
@@ -47,7 +47,6 @@ if (isset($_SESSION['Auth']['User'])) {
     echo $this->fetch('css');
     echo $this->fetch('script');
     ?>
-
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -67,77 +66,77 @@ if (isset($_SESSION['Auth']['User'])) {
                 <li><a href="/checks/publicview">Kwaliteitscriteria</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <? if ($isloggedin) { ?>
-                    <li class=dropdown><a class=dropdown-toggle data-toggle=dropdown href=#><?= $my_displayname ?><i
+                <?php if ($isloggedin) { ?>
+                    <li class=dropdown><a class=dropdown-toggle data-toggle=dropdown href=#><?php echo $my_displayname ?><i
                                 class="fa fa-user fa-fw fa-lg"></i> <i class="fa fa-caret-down"></i></a>
-                        <ul class="dropdown-menu dropdown-user"><? if (isset($_SESSION['Auth']['Admin']['id']) && $_SESSION['Auth']['Admin']['id'] > 0) { ?>
-                                <li><a href="/users/loginasuser/<?= $_SESSION['Auth']['Admin']['id']; ?>"><i
-                                        class="fa fa-sign-in fa-fw fa-lg"></i> Go Back</a></li><? } ?>
+                        <ul class="dropdown-menu dropdown-user"><?php if (isset($_SESSION['Auth']['Admin']['id']) && $_SESSION['Auth']['Admin']['id'] > 0) { ?>
+                                <li><a href="/users/loginasuser/<?php echo $_SESSION['Auth']['Admin']['id']; ?>"><i
+                                        class="fa fa-sign-in fa-fw fa-lg"></i> Go Back</a></li><?php } ?>
                             <li><a href=/users/changepassword><i class="fa fa-lock fa-fw fa-lg"></i> Wachtwoord wijzigen</a>
                             </li>
                             <li class=divider></li>
                             <li><a href=/users/logout><i class="fa fa-sign-out fa-fw fa-lg"></i> Uitloggen</a></li>
                         </ul>
                     </li>
-                <? } else { ?>
+                <?php } else { ?>
                     <li>
                         <a href="/users/login/">Inloggen</a></li>
-                <? } ?>
+                <?php } ?>
             </ul>
         </div>
     </div>
 </nav>
 
-<? if ($isloggedin) { ?>
+<?php if ($isloggedin) { ?>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
                 <ul class="nav nav-sidebar">
-                    <li <? if ($this->params->base . $this->params->url == '/websites') { ?>class="active"<? } ?>><a
+                    <li <?php if ($this->params->base . $this->params->url == '/websites') { ?>class="active"<?php } ?>><a
                             href="/websites">Websites</a></li>
-                    <? if ($isadmin) { ?>
+                    <?php if ($isadmin) { ?>
 
-                        <li <? if ($this->params->base . $this->params->url == '/websites/updates') { ?>class="active"<? } ?>>
+                        <li <?php if ($this->params->base . $this->params->url == '/websites/updates') { ?>class="active"<?php } ?>>
                             <a
                                 href="/websites/updates">Website updates</a></li>
-                        <li <? if ($this->params->base . $this->params->url == '/websites/socialshare') { ?>class="active"<? } ?>>
+                        <li <?php if ($this->params->base . $this->params->url == '/websites/socialshare') { ?>class="active"<?php } ?>>
                             <a
                                 href="/websites/socialshare">Website social share</a></li>
-                        <li <? if ($this->params->base . $this->params->url == '/mailbox') { ?>class="active"<? } ?>><a
+                        <li <?php if ($this->params->base . $this->params->url == '/mailbox') { ?>class="active"<?php } ?>><a
                                 href="/mailbox">Help</a></li>
-                        <li <? if ($this->params->base . $this->params->url == '/reportcategories') { ?>class="active"<? } ?>>
+                        <li <?php if ($this->params->base . $this->params->url == '/reportcategories') { ?>class="active"<?php } ?>>
                             <a href="/reportcategories">Kriteria Categorie&euml;n</a></li>
-                    <? } ?>
-                    <? if ($ismanager || $isadmin) { ?>
-                        <li <? if ($this->params->base . $this->params->url == '/checks') { ?>class="active"<? } ?>><a
+                    <?php } ?>
+                    <?php if ($ismanager || $isadmin) { ?>
+                        <li <?php if ($this->params->base . $this->params->url == '/checks') { ?>class="active"<?php } ?>><a
                                 href="/checks">Checks</a></li>
-                    <? } ?>
-                    <? if ($isadmin) { ?>
-                        <li <? if ($this->params->base . $this->params->url == '/checkcategories') { ?>class="active"<? } ?>>
+                    <?php } ?>
+                    <?php if ($isadmin) { ?>
+                        <li <?php if ($this->params->base . $this->params->url == '/checkcategories') { ?>class="active"<?php } ?>>
                             <a href="/checkcategories">Check Categorie&euml;n</a></li>
-                    <? } ?>
-                    <? if ($isadmin) { ?>
-                        <li <? if ($this->params->base . $this->params->url == '/priorities') { ?>class="active"<? } ?>>
+                    <?php } ?>
+                    <?php if ($isadmin) { ?>
+                        <li <?php if ($this->params->base . $this->params->url == '/priorities') { ?>class="active"<?php } ?>>
                             <a
                                 href="/priorities">Check Prioriteiten</a></li>
-                    <? } ?>
-                    <? if ($isadmin) { ?>
-                        <li <? if ($this->params->base . $this->params->url == '/roles') { ?>class="active"<? } ?>><a
+                    <?php } ?>
+                    <?php if ($isadmin) { ?>
+                        <li <?php if ($this->params->base . $this->params->url == '/roles') { ?>class="active"<?php } ?>><a
                                 href="/roles">Rollen</a></li>
-                    <? } ?>
+                    <?php } ?>
                 </ul>
-                <? if ($ismanager || $isadmin) { ?>
+                <?php if ($ismanager || $isadmin) { ?>
                     <hr>
-                <? } ?>
+                <?php } ?>
 
                 <ul class="nav nav-sidebar">
-                    <li <? if ($this->params->base . $this->params->url == '/users') { ?>class="active"<? } ?>><a
+                    <li <?php if ($this->params->base . $this->params->url == '/users') { ?>class="active"<?php } ?>><a
                             href="/users">Contactpersonen</a></li>
-                    <? if ($ismanager || $isadmin) { ?>
-                        <li <? if ($this->params->base . $this->params->url == '/customers') { ?>class="active"<? } ?>>
+                    <?php if ($ismanager || $isadmin) { ?>
+                        <li <?php if ($this->params->base . $this->params->url == '/customers') { ?>class="active"<?php } ?>>
                             <a
                                 href="/customers">Organisaties</a></li>
-                    <? } ?>
+                    <?php } ?>
                 </ul>
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -146,14 +145,14 @@ if (isset($_SESSION['Auth']['User'])) {
             </div>
         </div>
     </div>
-<? } else { ?>
+<?php } else { ?>
     <?php echo $this->Session->flash(); ?>
     <?php echo $this->fetch('content'); ?>
-<? } ?>
+<?php } ?>
 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js" type="text/javascript"></script>
 
-<? if (!$isadmin) { ?>
+<?php if (!$isadmin) { ?>
 <script>
     (function () {
         var s = document.createElement('script');
@@ -166,7 +165,7 @@ if (isset($_SESSION['Auth']['User'])) {
 
     })();
 </script>
-<? } ?>
+<?php } ?>
 <?php echo $this->element('sql_dump'); ?>
 </body>
 </html>

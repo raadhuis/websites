@@ -24,8 +24,8 @@
                                 <div class="users form">
                                     <?php echo $this->Form->create('User'); ?>
                                     <fieldset>
-                                        <?= $this->Form->input('password', array('label' => false, 'type' => 'password', 'placeholder' => 'Wachtwoord')); ?>
-                                        <?= $this->Form->input('cpassword', array('label' => false, 'type' => 'password', 'placeholder' => 'Herhaal wachtwoord')); ?>
+                                        <?php echo $this->Form->input('password', array('label' => false, 'type' => 'password', 'placeholder' => 'Wachtwoord')); ?>
+                                        <?php echo $this->Form->input('cpassword', array('label' => false, 'type' => 'password', 'placeholder' => 'Herhaal wachtwoord')); ?>
                                         <?php if (!isset($ident)) {
                                             $ident = '';
                                         }
@@ -34,7 +34,7 @@
                                         } ?>
                                         <?php echo $this->Form->hidden('ident', array('value' => $ident)) ?>
                                         <?php echo $this->Form->hidden('activate', array('value' => $activate)) ?>
-                                        <?= $this->Form->submit('Reset my password', array('class' => 'btn btn-primary')) ?>
+                                        <?php echo $this->Form->submit('Reset my password', array('class' => 'btn btn-primary')) ?>
                                         <?php echo $this->Form->end(); ?>
                                     </fieldset>
                                 </div>

@@ -362,7 +362,7 @@
 								<tr>
 									<td class="headerContent">
 										<!-- // Begin Module: Standard Header Image \\ -->
-										<img src="<?=Router::url("/", true);?>img/logo.svg" style="max-width:200px;" id="headerImage campaign-icon" mc:label="header_image" mc:edit="header_image" mc:allowdesigner mc:allowtext />
+										<img src="<?php echoRouter::url("/", true);?>img/logo.svg" style="max-width:200px;" id="headerImage campaign-icon" mc:label="header_image" mc:edit="header_image" mc:allowdesigner mc:allowtext />
 										<!-- // End Module: Standard Header Image \\ -->
 									</td>
 								</tr>
@@ -406,7 +406,7 @@
 													<div mc:edit="std_social">
 														<a href="https://twitter.com/ICG2015Alkmaar">Follow us on Twitter</a> | <a href="https://www.facebook.com/ICG2015">Friend on Facebook</a>&nbsp;
 														<br />
-														<em>Copyright &copy; RAADHUIS <?=date('Y')?>, All rights reserved.</em>
+														<em>Copyright &copy; RAADHUIS <?php echodate('Y')?>, All rights reserved.</em>
 														<br />
 														<strong>Ons e-mailadres is:</strong> help@raadhuis.com
 													</div>

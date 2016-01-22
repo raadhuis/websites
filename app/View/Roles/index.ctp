@@ -47,8 +47,8 @@
                                 <td><?php echo h($role['Role']['name']); ?>&nbsp;</td>
                                 <td><?php echo h($role['Role']['max']); ?>&nbsp;</td>
                                 <td><?php echo h($role['Role']['min']); ?>&nbsp;</td>
-                                <td><?= $this->Element('truefalse', array('status' => $role['Role']['inviteable'])); ?></td>
-                                <td><?= $this->Element('truefalse', array('status' => $role['Role']['isteammember'])); ?></td>
+                                <td><?php echo $this->Element('truefalse', array('status' => $role['Role']['inviteable'])); ?></td>
+                                <td><?php echo $this->Element('truefalse', array('status' => $role['Role']['isteammember'])); ?></td>
                                 <td><?php echo h($role['Role']['created']); ?>&nbsp;</td>
                                 <td><?php echo h($role['Role']['modified']); ?>&nbsp;</td>
                                 <td class="actions">

@@ -1,5 +1,5 @@
 <h1>Sitemap</h1>
-<p>Onderstaande sitemap word live gegenereerd van <?=$website['Website']['url']?>/sitemap.xml
+<p>Onderstaande sitemap word live gegenereerd van <?php echo$website['Website']['url']?>/sitemap.xml
 
 <pre>
 <?

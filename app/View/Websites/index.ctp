@@ -1,15 +1,15 @@
-<?= $this->Element('title', array('icon' => 'web', 'title' => 'Websites')); ?>
+<?php echo $this->Element('title', array('icon' => 'web', 'title' => 'Websites')); ?>
 
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
-            <? if ($isadmin) { ?>
+            <?php if ($isadmin) { ?>
                 <div class="panel-heading">
                     <div class="btn-group">
                         <?php echo $this->Html->link(__('Toevoegen'), array('action' => 'add'), array('escape' => false, 'class' => 'btn btn-primary')); ?>
                     </div>
                 </div>
-            <? } ?>
+            <?php } ?>
             <!-- /.panel-heading -->
             <table class="table table-striped">
                 <thead>
@@ -25,19 +25,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($websites as $website): ?>
+                <?php foreach ($websites as $website) { ?>
 
 
                     <tr>
-                        <td><a name="website<?= $website['Website']['id'] ?>"></a><a
-                                href="/websites/display/<?= $website['Website']['id'] ?>/1920"><img
-                                    src="/websites/display/<?= $website['Website']['id'] ?>/1024" width="64px"
+                        <td><a name="website<?php echo $website['Website']['id'] ?>"></a><a
+                                href="/websites/display/<?php echo $website['Website']['id'] ?>/1920"><img
+                                    src="/websites/display/<?php echo $website['Website']['id'] ?>/1024" width="64px"
                                     class="img-thumbnail"></a></td>
                         <td><a href="<?php echo h($website['Website']['url']); ?>" target="_blank"><i
                                     class='material-icons'>call_made</i></a></td>
                         <td><?php echo h($website['Website']['name']); ?>&nbsp;</td>
                         <td><?php echo h($website['Customer']['name']); ?>&nbsp;</td>
-                        <td><?= $website['Customer']['User']['name'] ?>&nbsp;</td>
+                        <td><?php echo $website['Customer']['User']['name'] ?>&nbsp;</td>
                         <td class="text-center"><?php echo $this->element('truefalse', array('status' => $website['Website']['responsive'])); ?>
                             &nbsp;</td>
                         <td class="text-center"><?php echo $this->element('truefalse', array('status' => ($website['Website']['uptimerobot_id'] != '0'))); ?>
@@ -54,25 +54,25 @@
                                 <ul class="dropdown-menu">
                                     <li><?php echo $this->Html->link(__('Rapportage'), array('controller' => 'checks', 'action' => 'report', $website['Website']['id'])); ?></li>
                                     <?php if ($website['Website']['uptimerobot_id'] == '0') { ?>
-                                        <li><?= $this->Html->link(__('Monitoring'), array('action' => 'monitoring', $website['Website']['id'])); ?></li>
-                                    <? } else { ?>
-                                        <li><?= $this->Html->link(__('Monitoring'), array('action' => 'monitoring', $website['Website']['id'])); ?></li>
-                                    <? } ?>
-                                    <? if ($isadmin) { ?>
+                                        <li><?php echo $this->Html->link(__('Monitoring'), array('action' => 'monitoring', $website['Website']['id'])); ?></li>
+                                    <?php } else { ?>
+                                        <li><?php echo $this->Html->link(__('Monitoring'), array('action' => 'monitoring', $website['Website']['id'])); ?></li>
+                                    <?php } ?>
+                                    <?php if ($isadmin) { ?>
                                         <li role="separator" class="divider"></li>
                                         <li><?php echo $this->Html->link(__('Regenerate Images'), array('action' => 'generate', $website['Website']['id'])); ?></li>
                                         <li><?php echo $this->Html->link(__('Bekijken'), array('action' => 'view', $website['Website']['id'])); ?></li>
                                         <li><?php echo $this->Form->postLink(__('Verwijderen'), array('action' => 'delete', $website['Website']['id']), __('Are you sure you want to delete # %s?', $website['Website']['id'])); ?></li>
-                                    <? } ?>
+                                    <?php } ?>
                                 </ul>
                             </div>
                         </td>
 
                     </tr>
-                <?php endforeach; ?>
+                <?php } ?>
                 </tbody>
             </table>
-            <?= $this->Element('pagination-footer') ?>
+            <?php echo $this->Element('pagination-footer') ?>
         </div>
     </div>
     <!-- end col md 9 -->

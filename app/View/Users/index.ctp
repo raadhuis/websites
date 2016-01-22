@@ -2,10 +2,10 @@
     <div class="row">
         <div class="col-md-12">
             <h1 class="page-header"><?php echo __('Contactpersonen'); ?></h1>
-            <? if ($notadmin) { ?>
-                <p>Hier vind je een overzicht van alle contactpersonen binnen <?= $customer ?>. Het staat je vrij om
+            <?php if ($notadmin) { ?>
+                <p>Hier vind je een overzicht van alle contactpersonen binnen <?php echo $customer ?>. Het staat je vrij om
                     andere contactpersonen toegang te verlenen tot deze omgeving.</p>
-            <? } ?>
+            <?php } ?>
         </div>
         <!-- end col md 12 -->
     </div>
@@ -25,8 +25,8 @@
                                     <div class="pull-right text-right">
                                         <?php echo $this->Form->create("Filter", array('role' => 'form', 'formStyle' => 'inline', 'url' => $base_url)); ?>
                                         <?php echo $this->Form->input("search", array('div' => false, 'label' => false, 'placeholder' => "Search...", 'style' => 'width:150px')); ?>
-                                        <? echo $this->Form->submit("Search", array('div' => false, 'class' => 'btn btn-primary')); ?>
-                                        <? echo $this->Form->end(); ?>
+                                        <?phpecho $this->Form->submit("Search", array('div' => false, 'class' => 'btn btn-primary')); ?>
+                                        <?phpecho $this->Form->end(); ?>
                                     </div>
                                 </div>
                             </div>
@@ -37,26 +37,26 @@
                 <table cellpadding="0" cellspacing="0" class="table table-striped">
                     <thead>
                     <tr>
-                        <? if (!$notadmin) { ?>
+                        <?php if (!$notadmin) { ?>
                             <th><?php echo $this->Paginator->sort('id'); ?></th>
                             <th><?php echo $this->Paginator->sort('userstatus_id'); ?></th>
                             <th><?php echo $this->Paginator->sort('customer_id'); ?></th>
                             <th><?php echo $this->Paginator->sort('role_id'); ?></th>
-                        <? } ?>
+                        <?php } ?>
                         <th><?php echo $this->Paginator->sort('title_id'); ?></th>
                         <th><?php echo $this->Paginator->sort('name'); ?></th>
                         <th><?php echo $this->Paginator->sort('email'); ?></th>
-                        <? if (!$notadmin) { ?>
+                        <?php if (!$notadmin) { ?>
                             <th><?php echo $this->Paginator->sort('created'); ?></th>
                             <th><?php echo $this->Paginator->sort('modified'); ?></th>
-                        <? } ?>
+                        <?php } ?>
                         <th class="actions"></th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php foreach ($users as $user): ?>
                         <tr>
-                            <? if (!$notadmin) { ?>
+                            <?php if (!$notadmin) { ?>
                                 <td><?php echo h($user['User']['id']); ?>&nbsp;
 
                                 </td>
@@ -69,20 +69,20 @@
                                 <td>
                                     <?php echo $this->Html->link($user['Role']['name'], array('controller' => 'roles', 'action' => 'view', $user['Role']['id'])); ?>
                                 </td>
-                            <? } ?>
+                            <?php } ?>
                             <td>
                                 <?php echo $user['Title']['name'] ?>
                             </td>
                             <td><?php echo h($user['User']['name']); ?>&nbsp;
                                 <?php if ($user['User']['id'] == $userId) { ?>
                                     <span class="label label-success">Dit ben jij!</span>
-                                <? } ?>
+                                <?php } ?>
                             </td>
                             <td><?php echo h($user['User']['email']); ?>&nbsp;</td>
-                            <? if (!$notadmin) { ?>
+                            <?php if (!$notadmin) { ?>
                                 <td><?php echo h($user['User']['created']); ?>&nbsp;</td>
                                 <td><?php echo h($user['User']['modified']); ?>&nbsp;</td>
-                            <? } ?>
+                            <?php } ?>
                             <td class="actions">
                                 <?php if (!$notadmin || $user['User']['id'] == $userId) { ?>
 
@@ -90,19 +90,19 @@
                                     <?php echo $this->Html->link('<button class="btn btn-default"><span class="fa fa-pencil"></span> Bewerken</button>', array('action' => 'edit', $user['User']['id']), array('escape' => false)); ?>
                                     <?php if ($user['User']['id'] <> $userId) { ?>
                                         <?php echo $this->Form->postLink('<button class="btn btn-default btn-sm"><span class="fa fa-times text-danger"></span> Verwijderen</button>', array('action' => 'delete', $user['User']['id']), array('escape' => false), __('Are you sure you want to delete # %s?', $user['User']['id'])); ?>
-                                    <? } ?>
-                                <? } ?>
+                                    <?php } ?>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
                 </table>
-                <?= $this->Element('pagination-footer') ?>
+                <?php echo $this->Element('pagination-footer') ?>
             </div>
         </div>
         <!-- end col md 9 -->
     </div>
-    <?= $this->Element('accountmanager') ?>
+    <?php echo $this->Element('accountmanager') ?>
 
     <!-- end row -->
 </div><!-- end containing of content -->

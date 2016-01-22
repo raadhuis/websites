@@ -1,4 +1,4 @@
-<?= $this->Element('title', array('icon' => 'add', 'title' => 'Nieuwe Check Categorie')); ?>
+<?php echo $this->Element('title', array('icon' => 'add', 'title' => 'Nieuwe Check Categorie')); ?>
 
 
 <div class="checkcategories form">
