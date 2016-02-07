@@ -24,7 +24,6 @@ if (isset($_SESSION['Auth']['User'])) {
     $ismanager = ($_SESSION['Auth']['User']['Role']['name'] == 'admin');
     $isclient = ($_SESSION['Auth']['User']['Role']['name'] == 'admin');
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -90,7 +89,7 @@ if (isset($_SESSION['Auth']['User'])) {
 <?php if ($isloggedin) { ?>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-3 col-md-2 sidebar">
+            <div class="col-sm-2 col-md-2 sidebar">
                 <ul class="nav nav-sidebar">
                     <li <?php if ($this->params->base . $this->params->url == '/websites') { ?>class="active"<?php } ?>><a
                             href="/websites">Websites</a></li>
@@ -101,11 +100,11 @@ if (isset($_SESSION['Auth']['User'])) {
                                 href="/websites/updates">Website updates</a></li>
                         <li <?php if ($this->params->base . $this->params->url == '/websites/socialshare') { ?>class="active"<?php } ?>>
                             <a
-                                href="/websites/socialshare">Website social share</a></li>
+                                href="/websites/socialshare">Website social</a></li>
                         <li <?php if ($this->params->base . $this->params->url == '/mailbox') { ?>class="active"<?php } ?>><a
                                 href="/mailbox">Help</a></li>
                         <li <?php if ($this->params->base . $this->params->url == '/reportcategories') { ?>class="active"<?php } ?>>
-                            <a href="/reportcategories">Kriteria Categorie&euml;n</a></li>
+                            <a href="/reportcategories">Criteria Cat</a></li>
                     <?php } ?>
                     <?php if ($ismanager || $isadmin) { ?>
                         <li <?php if ($this->params->base . $this->params->url == '/checks') { ?>class="active"<?php } ?>><a
@@ -139,7 +138,7 @@ if (isset($_SESSION['Auth']['User'])) {
                     <?php } ?>
                 </ul>
             </div>
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div class="col-sm-10 col-sm-offset-2 col-md-11 col-md-offset-2 main">
                 <?php echo $this->Session->flash(); ?>
                 <?php echo $this->fetch('content'); ?>
             </div>

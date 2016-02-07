@@ -29,7 +29,7 @@ class ApiController extends AppController
 
     public function websites()
     {
-        if (isset($this->request->data['token']) && $this->request->data['token'] == 'smIpukLouAEJ513Y6Y9T26mV' && $this->request->data['team_id'] == 'T03H73N8M') {
+        if (isset($this->request->data['token']) && $this->request->data['token'] == 'V13V5MDJoBVYlHxv5mehw8Si' && $this->request->data['team_id'] == 'T03H73N8M') {
             $this->Paginator->settings = array(
                 'limit' => 250,
                 'recursive' => 2,
@@ -78,6 +78,7 @@ class ApiController extends AppController
                     die('Website *'.$this->request->data['text'].'* not found, use `/websites` for the list of available websites');
                 }
             }
+
         } else {
             die('access denied, contact ict@raadhuis.com');
         }
