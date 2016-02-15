@@ -96,7 +96,10 @@ class FunctionComponent extends Component
             echo $result['text'] . "<br>\n";
             echo $result['details'] . "<br></b>\n";
             var_dump($result);
+            die();
+            return false;
         }
+        return true;
     }
 
     function create_user($da_host, $da_username, $da_password, $username, $domain, $email, $password, $package, $ip)

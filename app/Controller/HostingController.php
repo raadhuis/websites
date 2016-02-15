@@ -20,12 +20,6 @@ class HostingController extends AppController
     public $components = array('Paginator', 'Session', 'Function');
 
 
-    public function beforeFilter()
-    {
-        parent::beforeFilter();
-//        $this->Auth->allow('websites', 'website', 'whois');
-    }
-
     public function index()
     {
         App::import('Vendor', 'directadmin/httpsocket');
@@ -59,31 +53,24 @@ class HostingController extends AppController
 
         $sock = new HTTPSocket;
 
-        $results = array();
-        if (Configure::read('da_ssl') == 'Y') {
-            $sock->connect("ssl://" . $host, Configure::read('da_port'));
-        } else {
-            $sock->connect($host, Configure::read('da_port'));
-        }
+        $da_server = $this->Hosting->find("first", array("conditions"=>array("Server.name"=>$host,"Hosting.username"=>$user)));
 
-        $sock->set_login(Configure::read('da_login'), Configure::read('da_password'));
+        $this->set("server", $da_server);
+
+        $sock->connect($host, 2222);
+
+        $sock->set_login($da_server["Hosting"]["username"],$da_server["Hosting"]["password"] );
 
         $sock->query('/CMD_API_SHOW_USER_USAGE', array(
             'user' => $user
         ));
-        $this->set("result", $sock->fetch_parsed_body());
+        $this->set("user_usage", $sock->fetch_parsed_body());
 
         $sock->query('/CMD_API_SHOW_USER_CONFIG', array(
             'user' => $user
         ));
 
-        $this->set("result2", $sock->fetch_parsed_body());
-
-        $sock->query('/CMD_API_SHOW_USER_DOMAINS', array(
-            'user' => $user
-        ));
-
-        $this->set("result3", $sock->fetch_parsed_body());
+        $this->set("user_config", $sock->fetch_parsed_body());
 
     }
 
@@ -94,6 +81,7 @@ class HostingController extends AppController
         if (!empty($this->request->data)) {
 
             $da_servers = $this->Server->find("all");
+
             foreach ($da_servers as $da_server) {
 
                 $website = $this->Website->find("first", array('conditions' => array("Website.id" => $this->request->data['Hosting']['website_id'])));
@@ -143,37 +131,36 @@ class HostingController extends AppController
                                 $da_server['Server']['name'],
                                 $this->request->data['Hosting']['username'],
                                 $this->request->data['Hosting']['password'],
-                                $this->request->data['Hosting']['database_name'],
-                                $this->request->data['Hosting']['database_username'],
+                                'acc',
+                                'acc',
                                 $this->request->data['Hosting']['database_password'])
                             ) {
 
                                 $this->Session->setFlash(__('The hosting has been saved.'), 'success');
 
                             } else {
-                                $this->Session->setFlash(__('Could not create db on ', 'error'));
+                                $this->Session->setFlash(__('Could not create db '.$this->request->data['Hosting']['database_name'].' on '.$da_server['Server']['name'], 'error'));
                                 return $this->redirect(array('action' => 'index'));
                             }
                         } else {
-                            $this->Session->setFlash(__('Could not create user on ', 'error'));
+                            $this->Session->setFlash(__('Could not create user on '.$da_server['Server']['name'], 'error'));
                             return $this->redirect(array('action' => 'index'));
                         }
                     } else {
-                        $this->Session->setFlash(__('Could not create user on ', 'error'));
+                        $this->Session->setFlash(__('Could not create user '.$this->request->data['Hosting']['username'].' on '.$da_server['Server']['name'], 'error'));
                         return $this->redirect(array('action' => 'index'));
                     }
 //                    add_pointerdomain($domain,$username,$pass);
 //                    $mysqlpw = generatePassword();
 //                    create_db($username,$pass,$mysqlpw,"main");
 
-
                     $this->Session->setFlash(__('The hosting has been saved.'), 'success');
-                    return $this->redirect(array('action' => 'index'));
                 } else {
                     $this->Session->setFlash(__('The hosting could not be saved. Please, try again.', 'error'));
                     debug($this->Hosting->validationErrors);
                 }
             }
+            return $this->redirect(array('action' => 'index'));
         }
 
         $hosting_website_ids = $this->Hosting->find("all",
