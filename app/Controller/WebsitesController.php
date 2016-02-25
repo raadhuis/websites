@@ -11,7 +11,7 @@ App::uses('AppController', 'Controller');
 class WebsitesController extends AppController
 {
 
-    public $uses = array("Website", "Check");
+    public $uses = array("Website", "Check", "Customer");
     /**
      * Components
      *
@@ -23,7 +23,7 @@ class WebsitesController extends AppController
     public function beforeFilter()
     {
         parent::beforeFilter();
-        $this->Auth->allow('screenshots','display');
+        $this->Auth->allow('screenshots', 'display');
     }
 
 
@@ -67,6 +67,41 @@ class WebsitesController extends AppController
      *
      * @return void
      */
+    public function migratie()
+    {
+        $role = $this->User->getRoleNameById($this->Auth->user('id'));
+
+        $this->Paginator->settings = array(
+            'limit' => 25,
+            'recursive' => 2,
+            'order' => array(
+                'Customer.name' => 'asc',
+                'Website.name' => 'asc'
+            )
+        );
+
+        if ($role == 'client') {
+            $user_data = $this->User->find('first', array('recursive' => '1', 'conditions' => array('User.id' => $this->Auth->user('id'))));
+            $conditions = array(
+                'Website.customer_id' => $user_data['Customer']['id']
+            );
+            $this->Paginator->settings = array('conditions' => $conditions);
+        }
+
+        $this->Website->recursive = 0;
+        $this->set('websites', $this->Paginator->paginate());
+
+        $this->Check->recursive = 0;
+        $this->set('checks', $this->Check->find('all'));
+        $this->set('isadmin', ($role == "admin"));
+    }
+
+
+    /**
+     * index method
+     *
+     * @return void
+     */
     public function updates()
     {
         $role = $this->User->getRoleNameById($this->Auth->user('id'));
@@ -96,6 +131,7 @@ class WebsitesController extends AppController
         $this->set('checks', $this->Check->find('all'));
         $this->set('isadmin', ($role == "admin"));
     }
+
     /**
      * index method
      *
@@ -163,13 +199,26 @@ class WebsitesController extends AppController
         }
         $options = array(
             'conditions' => array('Website.' . $this->Website->primaryKey => $id),
-            'order' => array('Customer.name', 'Website.name')
-
+            'order' => array('Customer.name', 'Website.name'),
+            'recursive' => 2
         );
+        $website = $this->Website->find('first', $options);
+
+
         $this->set('website', $this->Website->find('first', $options));
+        $this->monitoring($id);
+
+        if (!$this->Customer->exists($website['Customer']['id'])) {
+            throw new NotFoundException(__('Invalid customer'));
+        }
+        $options = array('conditions' => array('Customer.' . $this->Customer->primaryKey => $website['Customer']['id']));
+        $this->set('customer', $this->Customer->find('first', $options));
+
+
     }
 
-    function generate($id = null){
+    function generate($id = null)
+    {
 
         if (!$this->Website->exists($id)) {
             throw new NotFoundException(__('Invalid website'));
@@ -237,9 +286,7 @@ class WebsitesController extends AppController
     }
 
 
-
-
-        /**
+    /**
      * add method
      *
      * @return void
@@ -274,7 +321,7 @@ class WebsitesController extends AppController
         if ($this->request->is(array('post', 'put'))) {
             if ($this->Website->save($this->request->data)) {
                 $this->Session->setFlash(__('The website has been saved.'));
-                return $this->redirect(array('action' => 'index#website'.$id));
+                return $this->redirect(array('action' => 'index#website' . $id));
             } else {
                 $this->Session->setFlash(__('The website could not be saved. Please, try again.'));
             }
@@ -313,13 +360,13 @@ class WebsitesController extends AppController
 
         if ($this->request->is(array('post', 'put'))) {
 
-                    App::import('Vendor', 'uptimerobot/uptimerobot');
+            App::import('Vendor', 'uptimerobot/uptimerobot');
 
-                    $upRobot = new UptimeRobot();
+            $upRobot = new UptimeRobot();
 
-                    $upRobot::configure('u203474-a76ee7debb893cd7a1514992', 1);
+            $upRobot::configure('u203474-a76ee7debb893cd7a1514992', 1);
 
-                    $upRobot->setFormat('json'); //Define the format of responses (json or xml)
+            $upRobot->setFormat('json'); //Define the format of responses (json or xml)
 
             $options = array(
                 'conditions' => array('Website.' . $this->Website->primaryKey => $id),
@@ -365,7 +412,7 @@ class WebsitesController extends AppController
             }
 
             if ($this->Website->save($this->request->data)) {
-                if($this->request->data["Website"]["uptimerobot_id"]<>0) {
+                if ($this->request->data["Website"]["uptimerobot_id"] <> 0) {
                     $this->Session->setFlash(__('Monitoring ingesteld'));
                 } else {
                     $this->Session->setFlash(__('Monitoring verwijderd'));
@@ -412,7 +459,7 @@ class WebsitesController extends AppController
             } catch (Exception $e) {
                 echo $e->getMessage();
             }
-            $this->set("monitoring",$monitoring);
+            $this->set("monitoring", $monitoring);
         }
 
     }

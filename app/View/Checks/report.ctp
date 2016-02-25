@@ -1,5 +1,5 @@
 <?php echo $this->Element('title', array('icon' => 'check', 'title' => 'Rapportage voor '. $website['Website']['name'])); ?>
-<?
+<?php
 
 if($isadmin) {
     $action = 'addedit';

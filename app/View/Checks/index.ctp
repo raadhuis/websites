@@ -13,7 +13,7 @@
 </div>
 
 
-<?
+<?php
 $oldcategory = '';
 ?>
 <div class="checks index">
@@ -43,7 +43,7 @@ $oldcategory = '';
                 <td class="actions">
                 </td>
                 -->
-        <?
+        <?php
         $oldcategory = $check['Checkcategory']['name'];
 
         endforeach; ?>

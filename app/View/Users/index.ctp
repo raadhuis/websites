@@ -25,8 +25,8 @@
                                     <div class="pull-right text-right">
                                         <?php echo $this->Form->create("Filter", array('role' => 'form', 'formStyle' => 'inline', 'url' => $base_url)); ?>
                                         <?php echo $this->Form->input("search", array('div' => false, 'label' => false, 'placeholder' => "Search...", 'style' => 'width:150px')); ?>
-                                        <?phpecho $this->Form->submit("Search", array('div' => false, 'class' => 'btn btn-primary')); ?>
-                                        <?phpecho $this->Form->end(); ?>
+                                        <?php echo $this->Form->submit("Search", array('div' => false, 'class' => 'btn btn-primary')); ?>
+                                        <?php echo $this->Form->end(); ?>
                                     </div>
                                 </div>
                             </div>
@@ -38,7 +38,6 @@
                     <thead>
                     <tr>
                         <?php if (!$notadmin) { ?>
-                            <th><?php echo $this->Paginator->sort('id'); ?></th>
                             <th><?php echo $this->Paginator->sort('userstatus_id'); ?></th>
                             <th><?php echo $this->Paginator->sort('customer_id'); ?></th>
                             <th><?php echo $this->Paginator->sort('role_id'); ?></th>
@@ -57,9 +56,6 @@
                     <?php foreach ($users as $user): ?>
                         <tr>
                             <?php if (!$notadmin) { ?>
-                                <td><?php echo h($user['User']['id']); ?>&nbsp;
-
-                                </td>
                                 <td>
                                     <?php echo $this->Html->link($user['Userstatus']['name'], array('controller' => 'userstatuses', 'action' => 'view', $user['Userstatus']['id'])); ?>
                                 </td>
@@ -102,7 +98,5 @@
         </div>
         <!-- end col md 9 -->
     </div>
-    <?php echo $this->Element('accountmanager') ?>
-
     <!-- end row -->
 </div><!-- end containing of content -->

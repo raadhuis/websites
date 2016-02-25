@@ -4,7 +4,7 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-9">
         <div class="login-panel panel panel-default">
             <div class="panel-heading">
                 <h1 class="panel-title">Contactgegevens bewerken</h1>
@@ -13,47 +13,75 @@
                 <div class="users form">
                     <?php echo $this->Form->create('User', array('role' => 'form')); ?>
                     <?php echo $this->Form->input('id', array('class' => 'form-control', 'placeholder' => 'Id')); ?>
-                    <div class="row">
-
-                        <?php if ($role == 'admin' || $role == 'manager') { ?>
-                            <div class="col-md-4">
-                                <?php echo $this->Form->input('role_id', array('class' => 'form-control', 'placeholder' => 'Role Id')); ?>
-                            </div>
-                            <div class="col-md-4">
-                                <?php echo $this->Form->input('userstatus_id', array('class' => 'form-control', 'placeholder' => 'Userstatus Id')); ?>
-                            </div>
-                            <div class="col-md-4">
+                    <fieldset>
+                        <legend>Algemeen</legend>
+                        <div class="row">
+                            <?php if ($role == 'admin' || $role == 'manager') { ?>
+                                <div class="col-md-2">
+                                    <?php echo $this->Form->input('role_id', array('class' => 'form-control', 'placeholder' => 'Role Id')); ?>
+                                </div>
+                                <div class="col-md-2">
+                                    <?php echo $this->Form->input('userstatus_id', array('class' => 'form-control', 'placeholder' => 'Userstatus Id')); ?>
+                                </div>
+                            <?php } else { ?>
+                                <?php echo $this->Form->hidden('role_id'); ?>
+                                <?php echo $this->Form->hidden('userstatus_id'); ?>
+                                <?php echo $this->Form->hidden('customer_id'); ?>
+                            <?php } ?>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
                                 <?php echo $this->Form->input('customer_id', array('class' => 'form-control', 'placeholder' => 'Customer Id')); ?>
                             </div>
-                        <?php } else { ?>
-                            <?php echo $this->Form->hidden('role_id'); ?>
-                            <?php echo $this->Form->hidden('userstatus_id'); ?>
-                            <?php echo $this->Form->hidden('customer_id'); ?>
-                        <?php } ?>
+                        </div>
 
-                        <div class="col-md-4">
-                            <?php echo $this->Form->input('title_id', array('class' => 'form-control', 'placeholder' => 'Title Id')); ?>
+                        <div class="row">
+                            <?php if ($role == 'admin' || $role == 'manager') { ?>
+                                <div class="col-md-6">
+                                    <?php echo $this->Form->input('email', array('class' => 'form-control', 'placeholder' => 'Email')); ?>
+                                </div>
+                            <?php } else { ?>
+                                <div class="col-md-6">
+                                    <?php echo $this->Form->input('email', array('class' => 'form-control', 'placeholder' => 'E-mailadres')); ?>
+                                </div>
+                            <?php } ?>
                         </div>
-                        <?php if ($role == 'admin' || $role == 'manager') { ?>
-                            <div class="col-md-6">
-                                <?php echo $this->Form->input('email', array('class' => 'form-control', 'placeholder' => 'Email')); ?>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <?php echo $this->Form->input('title_id', array('class' => 'form-control', 'placeholder' => 'Title Id')); ?>
                             </div>
-                        <?php } else { ?>
-                            <div class="col-md-6">
-                                <?php echo $this->Form->input('email', array('class' => 'form-control', 'placeholder' => 'E-mailadres')); ?>
+
+                            <div class="col-md-4">
+                                <?php echo $this->Form->input('first_name', array('class' => 'form-control', 'placeholder' => 'Voornaam')); ?>
                             </div>
-                        <?php } ?>
-                        <div class="col-md-4">
-                            <?php echo $this->Form->input('first_name', array('class' => 'form-control', 'placeholder' => 'Voornaam')); ?>
+                            <div class="col-md-2">
+                                <?php echo $this->Form->input('middle_name', array('class' => 'form-control', 'placeholder' => 'Tussenvoegsel')); ?>
+                            </div>
+                            <div class="col-md-4">
+                                <?php echo $this->Form->input('last_name', array('class' => 'form-control', 'placeholder' => 'Achternaam')); ?>
+                            </div>
+                            <hr>
                         </div>
-                        <div class="col-md-3">
-                            <?php echo $this->Form->input('middle_name', array('class' => 'form-control', 'placeholder' => 'Tussenvoegsel')); ?>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Extra contactgegevens</legend>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <?php echo $this->Form->input('phone_number', array('class' => 'form-control', 'placeholder' => '072-12345667')); ?>
+                            </div>
+                            <div class="col-md-3">
+                                <?php echo $this->Form->input('website_url', array('class' => 'form-control', 'placeholder' => 'http://example.com')); ?>
+                            </div>
+                            <div class="col-md-5">
+                                <?php echo $this->Form->input('twitter_username', array('class' => 'form-control', 'placeholder' => '')); ?>
+                            </div>
+                            <div class="col-md-5">
+                                <?php echo $this->Form->input('linkedin_username', array('class' => 'form-control', 'placeholder' => '')); ?>
+                            </div>
+                            <hr>
                         </div>
-                        <div class="col-md-5">
-                            <?php echo $this->Form->input('last_name', array('class' => 'form-control', 'placeholder' => 'Achternaam')); ?>
-                        </div>
-                        <hr>
-                    </div>
+                    </fieldset>
                     <?php echo $this->Form->submit(__('Opslaan'), array('class' => 'btn btn-primary')); ?>
                     <?php echo $this->Form->end() ?>
                 </div>
@@ -61,3 +89,29 @@
         </div>
     </div>
 </div>
+
+
+<h3>Accountmanager</h3>
+<h4><?php echo $user_data['name'] ?>
+    <?php if (!empty($user_data['title'])) { ?>
+        <small><?php echo $user_data['title'] ?></small>
+    <?php } ?>
+</h4>
+<ul class="list-inline">
+    <li><a href="mailto:<?php echo $user_data['email'] ?>" target="_blank"><?php echo $user_data['email'] ?></a></li>
+    <?php if (!empty($user_data['phone_number'])) { ?>
+        <li><a href="call:<?php echo $user_data['phone_number'] ?>"
+               target="_blank"><?php echo $user_data['phone_number'] ?></a></li>
+    <?php } ?>
+    <?php if (!empty($user_data['website_url'])) { ?>
+        <li><a href="<?php echo $user_data['website_url'] ?>"
+               target="_blank"><?php echo $user_data['website_url'] ?></a></li>
+    <?php } ?>
+    <?php if (!empty($user_data['twitter_username'])) { ?>
+        <li><a href="//twitter.com/<?php echo $user_data['twitter_username'] ?>" target="_blank">Twitter</a></li>
+    <?php } ?>
+    <?php if (!empty($user_data['linkedin_username'])) { ?>
+        <li><a href="https://www.linkedin.com/in/<?php echo $user_data['linkedin_username'] ?>"
+               target="_blank">LinkedIn</a></li>
+    <?php } ?>
+</ul>

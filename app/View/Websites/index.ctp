@@ -14,8 +14,6 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Screenshot</th>
-                    <th>link</th>
                     <th><?php echo $this->Paginator->sort('Website'); ?></th>
                     <th>Organisatie</th>
                     <th>Accountmanager</th>
@@ -29,12 +27,6 @@
 
 
                     <tr>
-                        <td><a name="website<?php echo $website['Website']['id'] ?>"></a><a
-                                href="/websites/display/<?php echo $website['Website']['id'] ?>/1920"><img
-                                    src="/websites/display/<?php echo $website['Website']['id'] ?>/1024" width="64px"
-                                    class="img-thumbnail"></a></td>
-                        <td><a href="<?php echo h($website['Website']['url']); ?>" target="_blank"><i
-                                    class='material-icons'>call_made</i></a></td>
                         <td><?php echo h($website['Website']['name']); ?>&nbsp;</td>
                         <td><?php echo h($website['Customer']['name']); ?>&nbsp;</td>
                         <td><?php echo $website['Customer']['User']['name'] ?>&nbsp;</td>
