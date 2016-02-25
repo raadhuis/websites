@@ -1,36 +1,50 @@
-<div class="websites view">
-<h2><?php echo __('Website'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($website['Website']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Customer'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($website['Customer']['name'], array('controller' => 'customers', 'action' => 'view', $website['Customer']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Name'); ?></dt>
-		<dd>
-			<?php echo h($website['Website']['name']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Url'); ?></dt>
-		<dd>
-			<?php echo h($website['Website']['url']); ?>
-			&nbsp;
-		</dd>
-	</dl>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Website'), array('action' => 'edit', $website['Website']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Website'), array('action' => 'delete', $website['Website']['id']), array(), __('Are you sure you want to delete # %s?', $website['Website']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Websites'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Website'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Customers'), array('controller' => 'customers', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Customer'), array('controller' => 'customers', 'action' => 'add')); ?> </li>
-	</ul>
+<?php echo $this->Element('title', array('icon' => 'web', 'title' => 'Website details')); ?>
+
+<div class="row">
+    <div class="col-sm-3 col-md-5">
+        <div class="well">
+            <img
+                src="/websites/display/<?php echo $website['Website']['id'] ?>/1920"
+                class="img-thumbnail" width="100%"></div>
+    </div>
+    <div class="col-md-3 col-sm-6">
+        <div class="well">
+            <h3>Website</h3>
+
+            <dl>
+                <dt>Naam</dt>
+                <dd><a href="<?php echo $website["Website"]['url']; ?>"
+                       target="_blank"><?php echo $website["Website"]['name']; ?></a></dd>
+                <?php if (!empty($website["Website"]['note'])) { ?>
+                    <dt>Notitie</dt>
+                    <dd><?php echo $website["Website"]['note']; ?></dd>
+                <?php } ?>
+                <?php if (!empty($website["Website"]['modxversion'])) { ?>
+                    <dt>MODX Versie</dt>
+                    <dd><?php echo $website["Website"]['modxversion']; ?></dd>
+                <?php } ?>
+            </dl>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6">
+        <div class="well">
+            <?php echo $this->element('customer', array('customer' => $customer)) ?>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6">
+        <div class="well">
+            <?php echo $this->element('accountmanager', array('user_data' => $website['Customer']['User'])) ?>
+        </div>
+    </div>
+    <div class="col-md-7 col-sm-12">
+        <div class="well">
+            <h3>Hosting</h3>
+            <?php pr($website) ?>
+        </div>
+    </div>
+    <?php if ($website['Website']['uptimerobot_id'] != '0') { ?>
+        <div class="col-md-12 col-sm-12">
+            <?php echo $this->Element('monitoring'); ?>
+        </div>
+    <?php } ?>
 </div>

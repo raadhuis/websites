@@ -279,6 +279,7 @@ class ChecksController extends AppController
 
     public function checkGooglepagespeed($website_id)
     {
+        return // error Warning (2): curl_setopt(): CURLOPT_FOLLOWLOCATION cannot be activated when an open_basedir is set [APP/Vendor/google/pagespeed.php, line 91]
         $this->layout = 'ajax';
         $website = $this->getUrl($website_id);
 
