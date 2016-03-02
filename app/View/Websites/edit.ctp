@@ -3,8 +3,8 @@
     <fieldset>
         <h1>Website bewerken</h1>
         <?php echo $this->Form->input('id'); ?>
+        <?php echo $this->Form->hidden("referer", array("value"=>$referer)); ?>
         <div class="row">
-
 
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
@@ -25,8 +25,9 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingOne">
+                    <div class="panel-heading" role="tab" id="headingFour">
                         <h4 class="panel-title">
                             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
                                 <?php echo __('Migratie'); ?>
@@ -40,8 +41,9 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingFour">
+                    <div class="panel-heading" role="tab" id="headingTwo">
                         <h4 class="panel-title">
                             <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                 <?php echo __('MODX gerelateerd'); ?>
@@ -68,6 +70,7 @@
                             ?>                        </div>
                     </div>
                 </div>
+
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingThree">
                         <h4 class="panel-title">
