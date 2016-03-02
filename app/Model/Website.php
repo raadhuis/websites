@@ -66,6 +66,13 @@ class Website extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => 'Customer.name'
+		),
+		'Migration' => array(
+			'className' => 'Migration',
+			'foreignKey' => 'migration_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => 'Migration.sorting'
 		)
 	);
 }

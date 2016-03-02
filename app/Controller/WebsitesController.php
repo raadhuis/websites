@@ -11,7 +11,7 @@ App::uses('AppController', 'Controller');
 class WebsitesController extends AppController
 {
 
-    public $uses = array("Website", "Check", "Customer");
+    public $uses = array("Website", "Check", "Customer", "Migration");
     /**
      * Components
      *
@@ -302,8 +302,10 @@ class WebsitesController extends AppController
                 $this->Session->setFlash(__('The website could not be saved. Please, try again.'));
             }
         }
+
+        $migrations = $this->Website->Migration->find('list');
         $customers = $this->Website->Customer->find('list');
-        $this->set(compact('customers'));
+        $this->set(compact('customers','migrations'));
     }
 
     /**
@@ -329,8 +331,10 @@ class WebsitesController extends AppController
             $options = array('conditions' => array('Website.' . $this->Website->primaryKey => $id));
             $this->request->data = $this->Website->find('first', $options);
         }
+
+        $migrations = $this->Website->Migration->find('list');
         $customers = $this->Website->Customer->find('list');
-        $this->set(compact('customers'));
+        $this->set(compact('customers','migrations'));
     }
 
     /**
