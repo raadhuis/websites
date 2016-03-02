@@ -105,7 +105,7 @@ if (isset($_SESSION['Auth']['User'])) {
                         <li <?php if ($this->params->base . $this->params->url == '/websites/updates') { ?>class="active"<?php } ?>>
                             <a
                                 href="/websites/updates">Website updates</a></li>
-                        <li <?php if ($this->params->base . $this->params->url == '/websites/updates') { ?>class="active"<?php } ?>>
+                        <li <?php if ($this->params->base . $this->params->url == '/hosting') { ?>class="active"<?php } ?>>
                             <a
                                 href="/hosting">Hosting</a></li>
                         <li <?php if ($this->params->base . $this->params->url == '/mailbox') { ?>class="active"<?php } ?>>

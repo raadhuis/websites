@@ -31,7 +31,7 @@
                         <td><?php echo $website['Customer']['User']['name'] ?></td>
                         <td><?php echo $website['Migration']['name'] ?></td>
                         <td class="text-center">
-                            <?php echo $this->element('truefalse', array('status' => $website['Website']['domainhostedbyus']==1)); ?>
+                            <?php echo $website['Website']['domainhostedbyus']; ?>
                         </td>
                         <td class="text-center">
                             <?php if (!empty($website['Website']['migrationnotes'])) { ?>
