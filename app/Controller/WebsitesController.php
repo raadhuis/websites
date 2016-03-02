@@ -336,7 +336,8 @@ class WebsitesController extends AppController
         }
 
         $referer = $this->referer();
-        $migrations = $this->Website->Migration->find('list');
+        $migrations = $this->Website->Migration->find('list', ['order' => array(
+        'sorting' => 'asc')]);
         $customers = $this->Website->Customer->find('list');
         $this->set(compact('customers','migrations','referer'));
     }
