@@ -21,20 +21,19 @@
                             <?php echo $this->Form->input('name', array('class' => 'form-control', 'label' => 'Hoofddomein van de website')); ?>
                             <?php echo $this->Form->input('url', array('class' => 'form-control', 'label' => 'Exacte url van de website')); ?>
                             <?php echo $this->Form->input('responsive', array('class' => 'form-control form-control-inline', 'type' => 'radio', 'label' => 'Website Responsive?', 'options' => array('1' => '<i class=\'material-icons\'>done</i> Ja', '0' => '<i class=\'material-icons\'>report_problem</i> Nee'))); ?>
-                            <?php echo $this->Form->input('domainhostedbyus', array('class' => 'form-control form-control-inline', 'type' => 'radio', 'label' => 'Is het primaire domein bij ons gehost?', 'options' => array('1' => '<i class=\'material-icons\'>done</i> Ja', '0' => '<i class=\'material-icons\'>report_problem</i> Nee'))); ?>
+                            <?php echo $this->Form->input('domainhostedbyus', array('class' => 'form-control form-control-inline', 'type' => 'radio', 'label' => 'Is het primaire domein bij ons gehost?', 'options' => array('1' => '<i class=\'material-icons\'>done</i> Ja', '2' => '<i class=\'material-icons\'>report_problem</i> Nee','3' => '<i class=\'material-icons\'>help</i> Onbekend'))); ?>
                         </div>
                     </div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingOne">
                         <h4 class="panel-title">
-                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
                                 <?php echo __('Migratie'); ?>
-
                             </a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                    <div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour">
                         <div class="panel-body">
                             <?php echo $this->Form->input('migrationnotes', array('class' => 'form-control', 'label' => 'Notitie voor migratie')); ?>
                             <?php echo $this->Form->input('migration_id', array('class' => 'form-control', 'label' => 'Migratie status')); ?>
@@ -42,7 +41,7 @@
                     </div>
                 </div>
                 <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingTwo">
+                    <div class="panel-heading" role="tab" id="headingFour">
                         <h4 class="panel-title">
                             <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                 <?php echo __('MODX gerelateerd'); ?>

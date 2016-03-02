@@ -31,7 +31,9 @@
                         <td><?php echo $website['Customer']['User']['name'] ?></td>
                         <td><?php echo $website['Migration']['name'] ?></td>
                         <td class="text-center">
-                            <?php echo $this->element('truefalse', array('status' => $website['Website']['domainhostedbyus']==1)); ?>
+                            <?php if($website['Website']['domainhostedbyus']==1) { ?><i class='material-icons'>done</i><?php } ?>
+                            <?php if($website['Website']['domainhostedbyus']==2) { ?><i class='material-icons'>report_problem</i><?php } ?>
+                            <?php if($website['Website']['domainhostedbyus']==3) { ?><i class='material-icons'>help</i><?php } ?>
                         </td>
                         <td class="text-center">
                             <?php if (!empty($website['Website']['migrationnotes'])) { ?>
@@ -39,7 +41,6 @@
                                    title="<?php echo h($website['Website']['migrationnotes']); ?>">comment</i>
                             <?php } ?>
                         </td>
-
                         <td class="actions">
                             <?php echo $this->Html->link(__('Bekijk'), array('action' => 'view', $website['Website']['id']), array('class' => 'btn btn-sm btn-default')); ?>
                             <?php echo $this->Html->link(__('Bewerk'), array('action' => 'edit', $website['Website']['id']), array('class' => 'btn btn-sm btn-primary')); ?>
