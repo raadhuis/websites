@@ -136,7 +136,11 @@ if (isset($_SESSION['Auth']['User'])) {
                 </ul>
                 <?php if ($ismanager || $isadmin) { ?>
                     <hr>
+                <ul class="nav nav-sidebar">
+                    <li <?php if ($this->params->base . $this->params->url == '/migrations') { ?>class="active"<?php } ?>><a href="/migrations">Migratie Statussen</a></li>
+                </ul>
                 <?php } ?>
+
 
                 <ul class="nav nav-sidebar">
                     <li <?php if ($this->params->base . $this->params->url == '/users') { ?>class="active"<?php } ?>><a
