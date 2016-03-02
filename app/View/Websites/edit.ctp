@@ -37,7 +37,7 @@
                     <div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour">
                         <div class="panel-body">
                             <?php echo $this->Form->input('migrationnotes', array('class' => 'form-control', 'label' => 'Notitie voor migratie')); ?>
-                            <?php echo $this->Form->input('migration_id', array('class' => 'form-control', 'label' => 'Migratie status')); ?>
+                            <?php echo $this->Form->input('migration_id', array('class' => 'form-control', 'type' => 'radio', 'label' => 'Migratie status')); ?>
                         </div>
                     </div>
                 </div>
