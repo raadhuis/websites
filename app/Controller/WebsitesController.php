@@ -323,6 +323,9 @@ class WebsitesController extends AppController
         if ($this->request->is(array('post', 'put'))) {
             if ($this->Website->save($this->request->data)) {
                 $this->Session->setFlash(__('The website has been saved.'));
+                if(isset($this->request->data["Website"]['referer'])) {
+                    return $this->redirect($this->request->data["Website"]['referer']);
+                }
                 return $this->redirect(array('action' => 'index#website' . $id));
             } else {
                 $this->Session->setFlash(__('The website could not be saved. Please, try again.'));
@@ -332,9 +335,10 @@ class WebsitesController extends AppController
             $this->request->data = $this->Website->find('first', $options);
         }
 
+        $referer = $this->referer();
         $migrations = $this->Website->Migration->find('list');
         $customers = $this->Website->Customer->find('list');
-        $this->set(compact('customers','migrations'));
+        $this->set(compact('customers','migrations','referer'));
     }
 
     /**
