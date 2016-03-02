@@ -28,7 +28,7 @@ class MigrationsController extends AppController
 
         $this->Paginator->settings = array(
             'order' => array(
-                'sorting' => 'asc'
+                'sorting' => 'desc'
             )
         );
 
