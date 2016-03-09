@@ -67,7 +67,8 @@
                                     '3' => 'Afgerond - uitgevoerd',
                                     '4' => 'Afgerond - niet uitgevoerd'
                                 )));
-                            ?>                        </div>
+                            ?>
+                        </div>
                     </div>
                 </div>
 

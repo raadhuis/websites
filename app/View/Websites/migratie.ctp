@@ -25,6 +25,7 @@
                 </thead>
                 <tbody>
                 <?php foreach ($websites as $website): ?>
+                    <?php pr($website); ?>
                     <tr>
                         <td><?php echo h($website['Website']['name']); ?></td>
                         <td><?php echo h($website['Customer']['name']); ?></td>

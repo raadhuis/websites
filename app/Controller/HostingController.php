@@ -131,11 +131,10 @@ class HostingController extends AppController
                                 $da_server['Server']['name'],
                                 $this->request->data['Hosting']['username'],
                                 $this->request->data['Hosting']['password'],
-                                'acc',
-                                'acc',
+                                $da_server['Server']['database_username_addfix'],
+                                $da_server['Server']['database_username_addfix'],
                                 $this->request->data['Hosting']['database_password'])
                             ) {
-
                                 $this->Session->setFlash(__('The hosting has been saved.'), 'success');
 
                             } else {

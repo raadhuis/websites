@@ -75,4 +75,14 @@ class Website extends AppModel {
 			'order' => 'Migration.sorting'
 		)
 	);
+
+	public $hasMany = array(
+		'Hosting' => array(
+			'className' => 'Hosting',
+			'foreignKey' => 'website_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => 'name'
+		)
+	);
 }
