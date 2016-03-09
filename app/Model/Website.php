@@ -82,7 +82,7 @@ class Website extends AppModel {
 			'foreignKey' => 'website_id',
 			'conditions' => '',
 			'fields' => '',
-			'order' => 'name'
+			'order' => 'username'
 		)
 	);
 }
