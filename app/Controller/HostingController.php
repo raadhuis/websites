@@ -53,13 +53,13 @@ class HostingController extends AppController
 
         $sock = new HTTPSocket;
 
-        $da_server = $this->Hosting->find("first", array("conditions"=>array("Server.name"=>$host,"Hosting.username"=>$user)));
+        $da_server = $this->Hosting->find("first", array("conditions" => array("Server.name" => $host, "Hosting.username" => $user)));
 
         $this->set("server", $da_server);
 
         $sock->connect($host, 2222);
 
-        $sock->set_login($da_server["Hosting"]["username"],$da_server["Hosting"]["password"] );
+        $sock->set_login($da_server["Hosting"]["username"], $da_server["Hosting"]["password"]);
 
         $sock->query('/CMD_API_SHOW_USER_USAGE', array(
             'user' => $user
@@ -91,12 +91,9 @@ class HostingController extends AppController
 
                 // server_id
                 $this->request->data['Hosting']['server_id'] = $da_server['Server']['id'];
-
-                $this->request->data['Hosting']['database_name'] = $this->Function->domainToUsername($website["Website"]['name']."_". $da_server['Server']['database_username_addfix']);
-
+                $this->request->data['Hosting']['database_name'] = $this->Function->domainToUsername($website["Website"]['name']) . "_" . $da_server['Server']['database_username_addfix'];
                 $this->request->data['Hosting']['database_host'] = $da_server['Server']['database_host'];
-
-                $this->request->data['Hosting']['database_username'] = $this->Function->domainToUsername($website["Website"]['name'] ."_". $da_server['Server']['database_username_addfix']);
+                $this->request->data['Hosting']['database_username'] = $this->Function->domainToUsername($website["Website"]['name']) . "_" . $da_server['Server']['database_username_addfix'];
                 $this->request->data['Hosting']['database_password'] = $this->Function->generatePassword();
 
                 $this->request->data['Hosting']['created_user_id'] = $this->Auth->user('id');
@@ -138,15 +135,15 @@ class HostingController extends AppController
                                 $this->Session->setFlash(__('The hosting has been saved.'), 'success');
 
                             } else {
-                                $this->Session->setFlash(__('Could not create db '.$this->request->data['Hosting']['database_name'].' on '.$da_server['Server']['name'], 'error'));
+                                $this->Session->setFlash(__('Could not create db ' . $this->request->data['Hosting']['database_name'] . ' on ' . $da_server['Server']['name'], 'error'));
                                 return $this->redirect(array('action' => 'index'));
                             }
                         } else {
-                            $this->Session->setFlash(__('Could not create user on '.$da_server['Server']['name'], 'error'));
+                            $this->Session->setFlash(__('Could not create user on ' . $da_server['Server']['name'], 'error'));
                             return $this->redirect(array('action' => 'index'));
                         }
                     } else {
-                        $this->Session->setFlash(__('Could not create user '.$this->request->data['Hosting']['username'].' on '.$da_server['Server']['name'], 'error'));
+                        $this->Session->setFlash(__('Could not create user ' . $this->request->data['Hosting']['username'] . ' on ' . $da_server['Server']['name'], 'error'));
                         return $this->redirect(array('action' => 'index'));
                     }
 //                    add_pointerdomain($domain,$username,$pass);
