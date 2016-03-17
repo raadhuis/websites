@@ -92,11 +92,11 @@ class HostingController extends AppController
                 // server_id
                 $this->request->data['Hosting']['server_id'] = $da_server['Server']['id'];
 
-                $this->request->data['Hosting']['database_name'] = $this->Function->domainToUsername($website["Website"]['name']);
+                $this->request->data['Hosting']['database_name'] = $this->Function->domainToUsername($website["Website"]['name']."_". $da_server['Server']['database_username_addfix']);
 
                 $this->request->data['Hosting']['database_host'] = $da_server['Server']['database_host'];
 
-                $this->request->data['Hosting']['database_username'] = $this->Function->domainToUsername($website["Website"]['name']. $da_server['Server']['database_username_addfix']);
+                $this->request->data['Hosting']['database_username'] = $this->Function->domainToUsername($website["Website"]['name'] ."_". $da_server['Server']['database_username_addfix']);
                 $this->request->data['Hosting']['database_password'] = $this->Function->generatePassword();
 
                 $this->request->data['Hosting']['created_user_id'] = $this->Auth->user('id');
