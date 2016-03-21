@@ -72,7 +72,7 @@ class WebsitesController extends AppController
         $role = $this->User->getRoleNameById($this->Auth->user('id'));
 
         $this->Paginator->settings = array(
-            'limit' => 25,
+            'limit' => 250,
             'recursive' => 2,
             'order' => array(
                 'Customer.name' => 'asc',
