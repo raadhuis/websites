@@ -28,6 +28,7 @@ class MigrationsController extends AppController
 
         $this->Paginator->settings = array(
             'order' => array(
+                'limit' => 250,
                 'sorting' => 'asc'
             )
         );
