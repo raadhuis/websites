@@ -55,22 +55,30 @@ class HostingController extends AppController
 
         $da_server = $this->Hosting->find("first", array("conditions" => array("Server.name" => $host, "Hosting.username" => $user)));
 
-        $this->set("server", $da_server);
+        if(count($da_server)>0) {
+            $this->set("server", $da_server);
 
-        $sock->connect($host, 2222);
+            $sock->connect($host, 2222);
 
-        $sock->set_login($da_server["Hosting"]["username"], $da_server["Hosting"]["password"]);
+            $sock->set_login($da_server["Hosting"]["username"], $da_server["Hosting"]["password"]);
 
-        $sock->query('/CMD_API_SHOW_USER_USAGE', array(
-            'user' => $user
-        ));
-        $this->set("user_usage", $sock->fetch_parsed_body());
+            $sock->query('/CMD_API_SHOW_USER_USAGE', array(
+                'user' => $user
+            ));
+            $this->set("user_usage", $sock->fetch_parsed_body());
 
-        $sock->query('/CMD_API_SHOW_USER_CONFIG', array(
-            'user' => $user
-        ));
+            $sock->query('/CMD_API_SHOW_USER_CONFIG', array(
+                'user' => $user
+            ));
 
-        $this->set("user_config", $sock->fetch_parsed_body());
+            $this->set("user_config", $sock->fetch_parsed_body());
+
+        } else {
+            $this->Session->setFlash('Could not find Server.name: ' . $host .' and Hosting.username: '.$user, 'error');
+            return $this->redirect(array('action' => 'index'));
+
+        }
+
 
     }
 
