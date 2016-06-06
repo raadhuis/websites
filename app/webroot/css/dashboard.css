@@ -123,9 +123,9 @@ body {
     border-radius: 50%;
 }
 
-
-
 .btn-primary, .btn-primary.active, .btn-primary.focus, .btn-primary:active, .btn-primary:focus, .btn-primary:hover, .open>.dropdown-toggle.btn-primary {
     background-color: #e5006c !important;
     border-color: #e5006c !important;
 }
+
+.dl-horizontal dt { text-align:left !important;}

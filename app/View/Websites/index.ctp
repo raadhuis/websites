@@ -37,7 +37,7 @@
                         <td class="actions" width="125px">
                             <!-- Split button -->
                             <div class="btn-group">
-                                <?php echo $this->Html->link(__('Bewerk'), array('action' => 'edit', $website['Website']['id']), array('class' => 'btn btn-default')); ?>
+                                <?php echo $this->Html->link(__('Bekijk'), array('action' => 'view', $website['Website']['id']), array('class' => 'btn btn-default')); ?>
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">
                                     <span class="caret"></span>
@@ -45,15 +45,9 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><?php echo $this->Html->link(__('Rapportage'), array('controller' => 'checks', 'action' => 'report', $website['Website']['id'])); ?></li>
-                                    <?php if ($website['Website']['uptimerobot_id'] == '0') { ?>
-                                        <li><?php echo $this->Html->link(__('Monitoring'), array('action' => 'monitoring', $website['Website']['id'])); ?></li>
-                                    <?php } else { ?>
-                                        <li><?php echo $this->Html->link(__('Monitoring'), array('action' => 'monitoring', $website['Website']['id'])); ?></li>
-                                    <?php } ?>
                                     <?php if ($isadmin) { ?>
                                         <li role="separator" class="divider"></li>
-                                        <li><?php echo $this->Html->link(__('Regenerate Images'), array('action' => 'generate', $website['Website']['id'])); ?></li>
-                                        <li><?php echo $this->Html->link(__('Bekijken'), array('action' => 'view', $website['Website']['id'])); ?></li>
+                                        <li><?php echo $this->Html->link(__('Bewerk'), array('action' => 'edit', $website['Website']['id'])); ?></li>
                                         <li><?php echo $this->Form->postLink(__('Verwijderen'), array('action' => 'delete', $website['Website']['id']), __('Are you sure you want to delete # %s?', $website['Website']['id'])); ?></li>
                                     <?php } ?>
                                 </ul>

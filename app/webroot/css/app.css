@@ -2,6 +2,8 @@ a {
     color: #e5006c;
 }
 
+.dl-horizontal dt { text-align:left !important;}
+
 body {
     -webkit-font-smoothing: antialiased;
     -webkit-text-size-adjust: 100%;

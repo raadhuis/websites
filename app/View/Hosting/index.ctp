@@ -1,6 +1,5 @@
 <?php echo $this->Element('title', array('icon' => 'web', 'title' => 'Hosting')); ?>
 
-<a href="/hosting/add" class="btn btn-primary">Toevoegen</a>
 <br>
 <br>
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
