@@ -96,6 +96,10 @@ class Hosting extends AppModel {
 		'Server' => array(
 			'className' => 'Server',
 			'foreignKey' => 'server_id',
+		),
+		'User' => array(
+			'className' => 'User',
+			'foreignKey' => 'created_user_id',
 		)
 	);
 }

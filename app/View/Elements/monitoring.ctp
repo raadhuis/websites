@@ -28,9 +28,10 @@ $a .= ']';
 $l .= ']';
 ?>
 <div class="row">
-    <div class="col-md-2 col-sm-4">
+    <div class="col-md-3 col-sm-4">
         <div class="well">
             <h2>Online</h2>
+            <p>Percentage dat de website online beschikbaar is.</p>
             <canvas id="monitoringUptime"></canvas>
         </div>
     </div>
@@ -54,12 +55,12 @@ $l .= ']';
             labels: <?php echo$l?>,
             datasets: [
                 {
-                    fillColor: "rgba(220,220,220,0.2)",
-                    strokeColor: "rgba(220,220,220,1)",
-                    pointColor: "rgba(220,220,220,1)",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    fillColor: "rgba(220,220,220,0)",
+                    strokeColor: "#e5006c",
+                    pointColor: "#e5006c",
+                    pointStrokeColor: "rgba(0,0,0,0)",
+                    pointHighlightFill: "#000",
+                    pointHighlightStroke: "rgba(0,0,0,0)",
                     data: <?php echo $a?>,
                     showXLabels: 10
                 }

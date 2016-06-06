@@ -1,9 +1,9 @@
-<h3>Contactpersoon</h3>
-<h4><?php echo $user_data['name'] ?>
+<h4>Contactpersoon</h4>
+<h5><?php echo $user_data['name'] ?>
     <?php if (!empty($user_data['title'])) { ?>
         <small><?php echo $user_data['title'] ?></small>
     <?php } ?>
-</h4>
+</h5>
 <ul class="list-unstyled">
     <li>
         <i class="fa fa-envelope"></i>
@@ -16,7 +16,7 @@
     <?php if (!empty($user_data['website_url'])) { ?>
         <li><i class="fa fa-link"></i>
             <a href="<?php echo $user_data['website_url'] ?>"
-               target="_blank"><?php echo $user_data['website_url'] ?></a></li>
+               target="_blank">website</a></li>
     <?php } ?>
     <?php if (!empty($user_data['twitter_username'])) { ?>
         <li><i class="fa fa-twitter"></i>

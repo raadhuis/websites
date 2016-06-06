@@ -256,7 +256,7 @@ class WebsitesController extends AppController
 
         if ($this->Website->save($this->request->data)) {
             $this->Session->setFlash(__('The website has been saved.'));
-            return $this->redirect(array('action' => 'index'));
+            return $this->redirect(array('action' => 'view/'.$id));
         } else {
             $this->Session->setFlash(__('The website could not be saved. Please, try again.'));
         }
