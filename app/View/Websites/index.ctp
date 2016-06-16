@@ -17,23 +17,25 @@
                     <th><?php echo $this->Paginator->sort('Website'); ?></th>
                     <th>Organisatie</th>
                     <th>Accountmanager</th>
-                    <th class="text-center">Respon.</th>
                     <th class="text-center">Monitoring</th>
                     <th class="actions" width="120px"></th>
                 </tr>
                 </thead>
+                <?php echo $this->Form->create(); ?>
+                <tr>
+                    <th><?= $this->Form->input('website_name', ['label'=>false,'placeholder' => 'Zoek op website','required'=>false])?></th>
+                    <th><?= $this->Form->input('customer_name', ['label'=>false,'placeholder' => 'Zoek op Organisatie','required'=>false])?></th>
+                    <th><?= $this->Form->input('user_id', ['options'=>$users,'label'=>false,'empty' => 'Kies een Accountmanager...','required'=>false])?></th>
+                    <th class="text-center"></th>
+                    <th><?php echo $this->Form->button('Zoeken', ['type' => 'submit','class'=>'btn btn-default']); ?></th>
+                </tr>
                 <tbody>
                 <?php foreach ($websites as $website) { ?>
-
-
                     <tr>
                         <td><?php echo h($website['Website']['name']); ?>&nbsp;</td>
                         <td><?php echo h($website['Customer']['name']); ?>&nbsp;</td>
                         <td><?php echo $website['Customer']['User']['name'] ?>&nbsp;</td>
-                        <td class="text-center"><?php echo $this->element('truefalse', array('status' => $website['Website']['responsive'])); ?>
-                            &nbsp;</td>
-                        <td class="text-center"><?php echo $this->element('truefalse', array('status' => ($website['Website']['uptimerobot_id'] != '0'))); ?>
-                            &nbsp;</td>
+                        <td class="text-center"><?php echo $this->element('truefalse', array('status' => ($website['Website']['uptimerobot_id'] != '0'))); ?>&nbsp;</td>
                         <td class="actions" width="125px">
                             <!-- Split button -->
                             <div class="btn-group">
@@ -53,7 +55,6 @@
                                 </ul>
                             </div>
                         </td>
-
                     </tr>
                 <?php } ?>
                 </tbody>
@@ -61,5 +62,4 @@
             <?php echo $this->Element('pagination-footer') ?>
         </div>
     </div>
-    <!-- end col md 9 -->
 </div>

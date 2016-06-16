@@ -15,6 +15,8 @@ class Customer extends AppModel {
  */
 	public $displayField = 'name';
 
+	public $order = 'name';
+
 /**
  * Validation rules
  *
