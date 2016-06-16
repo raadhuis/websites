@@ -11,7 +11,7 @@ App::uses('AppController', 'Controller');
 class WebsitesController extends AppController
 {
 
-    public $uses = array("Website", "Check", "Customer", "Migration");
+    public $uses = array("Website", "Check", "Customer", "Migration","Hosting");
     /**
      * Components
      *
@@ -34,10 +34,49 @@ class WebsitesController extends AppController
      */
     public function index()
     {
+        $conditions = [];
         $role = $this->User->getRoleNameById($this->Auth->user('id'));
 
+        if ($role == 'client') {
+            $user_data = $this->User->find('first', array('recursive' => '1', 'conditions' => array('User.id' => $this->Auth->user('id'))));
+            $conditions[] = ['Website.customer_id' => $user_data['Customer']['id']];
+        }
+
+        if (isset($this->request->data['Website']['customer_name'])) {
+            $this->Session->write('search.Website.customer_name', $this->request->data['Website']['customer_name']);
+        } else {
+            $this->request->data['Website']['customer_name'] = $this->Session->read('search.Website.customer_name');
+        }
+
+        if(!empty($this->request->data['Website']['customer_name'])) {
+            $conditions[] = ['Customer.name LIKE' => '%'.$this->request->data['Website']['customer_name'].'%'];
+        }
+
+        if (isset($this->request->data['Website']['website_name'])) {
+            $this->Session->write('search.Website.website_name', $this->request->data['Website']['website_name']);
+        } else {
+            $this->request->data['Website']['website_name'] = $this->Session->read('search.Website.website_name');
+        }
+
+        if(!empty($this->request->data['Website']['website_name'])) {
+            $conditions[] = ['Website.name LIKE' => '%'.$this->request->data['Website']['website_name'].'%'];
+        }
+
+        // user_id
+        if (isset($this->request->data['Website']['user_id'])) {
+            $this->Session->write('search.Website.user_id', $this->request->data['Website']['user_id']);
+        } else {
+            $this->request->data['Website']['user_id'] = $this->Session->read('search.Website.user_id');
+        }
+
+        if(!empty($this->request->data['Website']['user_id'])) {
+           $conditions[] = ['Customer.user_id' => $this->request->data['Website']['user_id']];
+        }
+
+
         $this->Paginator->settings = array(
-            'limit' => 250,
+            'conditions' => $conditions,
+            'limit' => 15,
             'recursive' => 2,
             'order' => array(
                 'Customer.name' => 'asc',
@@ -45,20 +84,10 @@ class WebsitesController extends AppController
             )
         );
 
-        if ($role == 'client') {
-            $user_data = $this->User->find('first', array('recursive' => '1', 'conditions' => array('User.id' => $this->Auth->user('id'))));
-
-            $conditions = array(
-                'Website.customer_id' => $user_data['Customer']['id']
-            );
-            $this->Paginator->settings = array('conditions' => $conditions);
-        }
-
-        $this->Website->recursive = 0;
         $this->set('websites', $this->Paginator->paginate());
 
         $this->Check->recursive = 0;
-        $this->set('checks', $this->Check->find('all'));
+        $this->set('users', $this->User->find('list',['conditions'=>['customer_id'=>2]]));
         $this->set('isadmin', ($role == "admin"));
     }
 
@@ -204,8 +233,30 @@ class WebsitesController extends AppController
         );
         $website = $this->Website->find('first', $options);
 
+        App::import('Vendor', 'directadmin/httpsocket');
 
-        $this->set('website', $this->Website->find('first', $options));
+        $sock = new HTTPSocket;
+
+        foreach($website['Hosting'] as $h) {
+
+                $sock->connect($h['hostname'], 2222);
+
+                $sock->set_login($h["username"], $h["password"]);
+
+                $sock->query('/CMD_API_SHOW_USER_USAGE', array(
+                    'user' => $h['username']
+                ));
+                $this->set("user_usage", $sock->fetch_parsed_body());
+
+                $sock->query('/CMD_API_SHOW_USER_CONFIG', array(
+                    'user' => $h['username']
+                ));
+
+                $this->set("user_config", $sock->fetch_parsed_body());
+
+        }
+
+        $this->set('website', $website);
         $this->monitoring($id);
 
         if (!$this->Customer->exists($website['Customer']['id'])) {

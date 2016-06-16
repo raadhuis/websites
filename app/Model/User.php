@@ -22,7 +22,7 @@ class User extends AppModel
      *
      * @var string
      */
-    public $displayField = 'last_name';
+    public $displayField = 'name';
 
     public $virtualFields = array('name' => "CONCAT_WS(' ', User.first_name, User.middle_name, User.last_name)");
 
