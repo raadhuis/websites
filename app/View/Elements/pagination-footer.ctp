@@ -1,11 +1,15 @@
 <div class="panel-footer">
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-6">
             <p>
                 <small><?php echo $this->Paginator->counter(array('format' => __('Pagina {:page} van {:pages}, getoond worden {:current} regels van de {:count} in totaal, startend op regel {:start}, eindigend op {:end}'))); ?></small>
             </p>
         </div>
-        <div class="col-md-5 text-center">
+        <?php  if(isset($export) && $export==true){ ?>
+            <div class="col-md-4 text-right">
+        <? } else { ?>
+            <div class="col-md-6 text-right">
+        <? } ?>
             <?php
                 $params = $this->Paginator->params();
                 if ($params['pageCount'] > 1) {
@@ -19,10 +23,10 @@
                     </ul>
                 <?php } ?>
         </div>
+        <?php  if(isset($export) && $export == true){ ?>
         <div class="col-md-2 text-right">
-            <?php  if(isset($export) && $export==true){ ?>
                 <a href="/export/index/<?php echosubstr($this->request->params['controller'],0,-1)?>" class="btn btn-default"><i class="fa fa-download"></i> Download CSV</a>
-            <?php } ?>
         </div>
+        <?php } ?>
     </div>
 </div>

@@ -11,7 +11,7 @@ App::uses('AppController', 'Controller');
 class WebsitesController extends AppController
 {
 
-    public $uses = array("Website", "Check", "Customer", "Migration","Hosting");
+    public $uses = array("Website", "Check", "Customer", "Migration", "Hosting");
     /**
      * Components
      *
@@ -48,8 +48,8 @@ class WebsitesController extends AppController
             $this->request->data['Website']['customer_name'] = $this->Session->read('search.Website.customer_name');
         }
 
-        if(!empty($this->request->data['Website']['customer_name'])) {
-            $conditions[] = ['Customer.name LIKE' => '%'.$this->request->data['Website']['customer_name'].'%'];
+        if (!empty($this->request->data['Website']['customer_name'])) {
+            $conditions[] = ['Customer.name LIKE' => '%' . $this->request->data['Website']['customer_name'] . '%'];
         }
 
         if (isset($this->request->data['Website']['website_name'])) {
@@ -58,8 +58,8 @@ class WebsitesController extends AppController
             $this->request->data['Website']['website_name'] = $this->Session->read('search.Website.website_name');
         }
 
-        if(!empty($this->request->data['Website']['website_name'])) {
-            $conditions[] = ['Website.name LIKE' => '%'.$this->request->data['Website']['website_name'].'%'];
+        if (!empty($this->request->data['Website']['website_name'])) {
+            $conditions[] = ['Website.name LIKE' => '%' . $this->request->data['Website']['website_name'] . '%'];
         }
 
         // user_id
@@ -69,8 +69,8 @@ class WebsitesController extends AppController
             $this->request->data['Website']['user_id'] = $this->Session->read('search.Website.user_id');
         }
 
-        if(!empty($this->request->data['Website']['user_id'])) {
-           $conditions[] = ['Customer.user_id' => $this->request->data['Website']['user_id']];
+        if (!empty($this->request->data['Website']['user_id'])) {
+            $conditions[] = ['Customer.user_id' => $this->request->data['Website']['user_id']];
         }
 
 
@@ -87,7 +87,7 @@ class WebsitesController extends AppController
         $this->set('websites', $this->Paginator->paginate());
 
         $this->Check->recursive = 0;
-        $this->set('users', $this->User->find('list',['conditions'=>['customer_id'=>2]]));
+        $this->set('users', $this->User->find('list', ['conditions' => ['customer_id' => 2]]));
         $this->set('isadmin', ($role == "admin"));
     }
 
@@ -213,14 +213,6 @@ class WebsitesController extends AppController
         $this->set('checks', $this->Check->find('all'));
     }
 
-
-    /**
-     * view method
-     *
-     * @throws NotFoundException
-     * @param string $id
-     * @return void
-     */
     public function view($id = null)
     {
         if (!$this->Website->exists($id)) {
@@ -237,22 +229,22 @@ class WebsitesController extends AppController
 
         $sock = new HTTPSocket;
 
-        foreach($website['Hosting'] as $h) {
+        foreach ($website['Hosting'] as $h) {
 
-                $sock->connect($h['hostname'], 2222);
+            $sock->connect($h['hostname'], 2222);
 
-                $sock->set_login($h["username"], $h["password"]);
+            $sock->set_login($h["username"], $h["password"]);
 
-                $sock->query('/CMD_API_SHOW_USER_USAGE', array(
-                    'user' => $h['username']
-                ));
-                $this->set("user_usage", $sock->fetch_parsed_body());
+            $sock->query('/CMD_API_SHOW_USER_USAGE', array(
+                'user' => $h['username']
+            ));
+            $this->set("user_usage", $sock->fetch_parsed_body());
 
-                $sock->query('/CMD_API_SHOW_USER_CONFIG', array(
-                    'user' => $h['username']
-                ));
+            $sock->query('/CMD_API_SHOW_USER_CONFIG', array(
+                'user' => $h['username']
+            ));
 
-                $this->set("user_config", $sock->fetch_parsed_body());
+            $this->set("user_config", $sock->fetch_parsed_body());
 
         }
 
@@ -266,6 +258,29 @@ class WebsitesController extends AppController
         $this->set('customer', $this->Customer->find('first', $options));
 
 
+    }
+
+    public function ftppass($id = null)
+    {
+        if (!$this->Website->exists($id)) {
+            throw new NotFoundException(__('Invalid website'));
+        }
+
+        $website = $this->Website->find('first',
+            array('conditions' =>
+                array('Website.' . $this->Website->primaryKey => $id), 'recursive' => 2));
+
+        $arr = array();
+
+        foreach ($website['Hosting'] as $h) {
+            $arr[$h['Server']['database_username_addfix']] = ['username' => $h['username'], 'password' => $h['password']];
+        }
+
+        $this->response->body(json_encode($arr));
+        $this->response->type('json');
+        $this->response->download('punt-ftppass');
+
+        return $this->response;
     }
 
     function generate($id = null)
@@ -307,7 +322,7 @@ class WebsitesController extends AppController
 
         if ($this->Website->save($this->request->data)) {
             $this->Session->setFlash(__('The website has been saved.'));
-            return $this->redirect(array('action' => 'view/'.$id));
+            return $this->redirect(array('action' => 'view/' . $id));
         } else {
             $this->Session->setFlash(__('The website could not be saved. Please, try again.'));
         }
@@ -356,7 +371,7 @@ class WebsitesController extends AppController
 
         $migrations = $this->Website->Migration->find('list');
         $customers = $this->Website->Customer->find('list');
-        $this->set(compact('customers','migrations'));
+        $this->set(compact('customers', 'migrations'));
     }
 
     /**
@@ -374,7 +389,7 @@ class WebsitesController extends AppController
         if ($this->request->is(array('post', 'put'))) {
             if ($this->Website->save($this->request->data)) {
                 $this->Session->setFlash(__('The website has been saved.'));
-                if(isset($this->request->data["Website"]['referer'])) {
+                if (isset($this->request->data["Website"]['referer'])) {
                     return $this->redirect($this->request->data["Website"]['referer']);
                 }
                 return $this->redirect(array('action' => 'index#website' . $id));
@@ -388,9 +403,9 @@ class WebsitesController extends AppController
 
         $referer = $this->referer();
         $migrations = $this->Website->Migration->find('list', ['order' => array(
-        'sorting' => 'asc')]);
+            'sorting' => 'asc')]);
         $customers = $this->Website->Customer->find('list');
-        $this->set(compact('customers','migrations','referer'));
+        $this->set(compact('customers', 'migrations', 'referer'));
     }
 
     /**
