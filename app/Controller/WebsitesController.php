@@ -237,16 +237,13 @@ class WebsitesController extends AppController
 
             $sock->set_login($h["username"], $h["password"]);
 
-            $sock->query('/CMD_API_SHOW_USER_USAGE', array(
-                'user' => $h['username']
-            ));
-            $server_data[$h['hostname']]['user_usage'] = $sock->fetch_parsed_body();
+            $sock->query('/CMD_API_SHOW_USER_USAGE', array('user' => $h['username']));
 
-            $sock->query('/CMD_API_SHOW_USER_CONFIG', array(
-                'user' => $h['username']
-            ));
+            $server_data[$h['hostname']]['usage'] = $sock->fetch_parsed_body();
 
-            $server_data[$h['hostname']]['user_config'] = $sock->fetch_parsed_body();
+            $sock->query('/CMD_API_SHOW_USER_CONFIG', array('user' => $h['username']));
+
+            $server_data[$h['hostname']]['config'] = $sock->fetch_parsed_body();
 
         }
 

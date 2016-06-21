@@ -23,46 +23,45 @@
             <a class="btn" href="/websites/generate/<?php echo $website['Website']['id'] ?>">Afbeelding verversen</a>
         </div>
     </div>
-    <div class="col-md-4 col-sm-6">
-
+    <div class="col-md-8 col-sm-12">
         <div class="well">
-            <h3>Account</h3>
-            <?php echo $this->element('customer', array('customer' => $customer)) ?>
-            <?php echo $this->element('accountmanager', array('user_data' => $website['Customer']['User'])) ?>
-        </div>
-    </div>
-    <div class="col-md-4 col-sm-12">
-        <div class="well">
-            <h3>Hosting</h3>
+            <h3>Hosting Details</h3>
             <?php if (count($website["Hosting"]) > 0) { ?>
                 <h4>Pakket: <?php echo $website['Hosting'][0]['Hostingpackage']['name'] ?></h4>
                 <p>Aangemaakt op <?php echo $website["Hosting"][0]['created']; ?>
                     door <?php echo $website['Hosting'][0]['User']['name']; ?>.</p>
+                <div class="row">
 
-                <? foreach ($website["Hosting"] as $key => $h) { ?>
-                    <? pr($server_data) ?>
-                    <h5><?php echo $h['Server']['name'] ?></h5>
-                    <div class="panel-group" id="accordion<?php echo $key ?>">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a class="accordion-toggle" data-toggle="collapse"
-                                       data-parent="#accordion<?php echo $key ?>"
-                                       href="#collapseOne<?php echo $key ?>">
-                                        SSH / SFTP gegevens
-                                    </a><i class="indicator glyphicon glyphicon-chevron-down  pull-right"></i>
-                                </h4>
-                            </div>
-                            <div id="collapseOne<?php echo $key ?>" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <dl>
-                                        <dt>Gebruikersnaam</dt>
-                                        <dd>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control"
-                                                       value="<?php echo $h['username'] ?>"
-                                                       placeholder="Gebruikersnaam"
-                                                       id="copy-input1">
+                    <? foreach ($website["Hosting"] as $key => $h) { ?>
+                        <div class="col-md-6 col-sm-12">
+                            <? if(isset($server_data[$h['Server']['name']])) { ?>
+
+                                <?php pr($server_data[$h['Server']['name']]['config']); ?>
+                                <?php pr($server_data[$h['Server']['name']]['usage']); ?>
+
+                            <?php } ?>
+                            <h5><?php echo $h['Server']['name'] ?></h5>
+                            <div class="panel-group" id="accordion<?php echo $key ?>">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#accordion<?php echo $key ?>"
+                                               href="#collapseOne<?php echo $key ?>">
+                                                SSH / SFTP gegevens
+                                            </a><i class="indicator glyphicon glyphicon-chevron-down  pull-right"></i>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne<?php echo $key ?>" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <dl>
+                                                <dt>Gebruikersnaam</dt>
+                                                <dd>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control"
+                                                               value="<?php echo $h['username'] ?>"
+                                                               placeholder="Gebruikersnaam"
+                                                               id="copy-input1">
     <span class="input-group-btn">
       <button class="btn btn-default" type="button" id="copy-button1"
               data-toggle="tooltip" data-placement="bottom"
@@ -70,16 +69,16 @@
         <i class="fa fa-clipboard"></i>
       </button>
     </span>
-                                            </div>
+                                                    </div>
 
-                                        </dd>
-                                        <dt>Wachtwoord</dt>
-                                        <dd>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control"
-                                                       value="<?php echo $h['password'] ?>"
-                                                       placeholder="Wachtwoord"
-                                                       id="copy-input2">
+                                                </dd>
+                                                <dt>Wachtwoord</dt>
+                                                <dd>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control"
+                                                               value="<?php echo $h['password'] ?>"
+                                                               placeholder="Wachtwoord"
+                                                               id="copy-input2">
     <span class="input-group-btn">
       <button class="btn btn-default" type="button" id="copy-button2"
               data-toggle="tooltip" data-placement="bottom"
@@ -87,16 +86,16 @@
         <i class="fa fa-clipboard"></i>
       </button>
     </span>
-                                            </div>
+                                                    </div>
 
-                                        </dd>
-                                        <dt>Webserver</dt>
-                                        <dd>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control"
-                                                       value="<?php echo $h['hostname'] ?>"
-                                                       placeholder="Server adres"
-                                                       id="copy-input3">
+                                                </dd>
+                                                <dt>Webserver</dt>
+                                                <dd>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control"
+                                                               value="<?php echo $h['hostname'] ?>"
+                                                               placeholder="Server adres"
+                                                               id="copy-input3">
     <span class="input-group-btn">
       <button class="btn btn-default" type="button" id="copy-button3"
               data-toggle="tooltip" data-placement="bottom"
@@ -104,32 +103,32 @@
         <i class="fa fa-clipboard"></i>
       </button>
     </span>
-                                            </div>
-                                        </dd>
-                                    </dl>
+                                                    </div>
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a class="accordion-toggle" data-toggle="collapse"
-                                       data-parent="#accordion<?php echo $key ?>"
-                                       href="#collapseTwo<?php echo $key ?>">
-                                        Database gegevens
-                                    </a><i class="indicator glyphicon glyphicon-chevron-down  pull-right"></i>
-                                </h4>
-                            </div>
-                            <div id="collapseTwo<?php echo $key ?>" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <dl>
-                                        <dt>Database naam</dt>
-                                        <dd>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control"
-                                                       value="<?php echo $h['database_name'] ?>"
-                                                       placeholder="Database naam"
-                                                       id="copy-input4">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a class="accordion-toggle" data-toggle="collapse"
+                                               data-parent="#accordion<?php echo $key ?>"
+                                               href="#collapseTwo<?php echo $key ?>">
+                                                Database gegevens
+                                            </a><i class="indicator glyphicon glyphicon-chevron-down  pull-right"></i>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo<?php echo $key ?>" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <dl>
+                                                <dt>Database naam</dt>
+                                                <dd>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control"
+                                                               value="<?php echo $h['database_name'] ?>"
+                                                               placeholder="Database naam"
+                                                               id="copy-input4">
     <span class="input-group-btn">
       <button class="btn btn-default" type="button" id="copy-button4"
               data-toggle="tooltip" data-placement="bottom"
@@ -137,15 +136,15 @@
         <i class="fa fa-clipboard"></i>
       </button>
     </span>
-                                            </div>
-                                        </dd>
-                                        <dt>Gebruikersnaam</dt>
-                                        <dd>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control"
-                                                       value="<?php echo $h['database_username'] ?>"
-                                                       placeholder="Gebruikersnaam"
-                                                       id="copy-input5">
+                                                    </div>
+                                                </dd>
+                                                <dt>Gebruikersnaam</dt>
+                                                <dd>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control"
+                                                               value="<?php echo $h['database_username'] ?>"
+                                                               placeholder="Gebruikersnaam"
+                                                               id="copy-input5">
     <span class="input-group-btn">
       <button class="btn btn-default" type="button" id="copy-button5"
               data-toggle="tooltip" data-placement="bottom"
@@ -154,15 +153,15 @@
 
       </button>
     </span>
-                                            </div>
-                                        </dd>
-                                        <dt>Wachtwoord</dt>
-                                        <dd>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control"
-                                                       value="<?php echo $h['database_password'] ?>"
-                                                       placeholder="Wachtwoord"
-                                                       id="copy-input6">
+                                                    </div>
+                                                </dd>
+                                                <dt>Wachtwoord</dt>
+                                                <dd>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control"
+                                                               value="<?php echo $h['database_password'] ?>"
+                                                               placeholder="Wachtwoord"
+                                                               id="copy-input6">
     <span class="input-group-btn">
       <button class="btn btn-default" type="button" id="copy-button6"
               data-toggle="tooltip" data-placement="bottom"
@@ -170,15 +169,15 @@
         <i class="fa fa-clipboard"></i>
       </button>
     </span>
-                                            </div>
-                                        </dd>
-                                        <dt>Database server</dt>
-                                        <dd>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control"
-                                                       value="<?php echo $h['database_host'] ?>"
-                                                       placeholder="Hostname"
-                                                       id="copy-input7">
+                                                    </div>
+                                                </dd>
+                                                <dt>Database server</dt>
+                                                <dd>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control"
+                                                               value="<?php echo $h['database_host'] ?>"
+                                                               placeholder="Hostname"
+                                                               id="copy-input7">
     <span class="input-group-btn">
       <button class="btn btn-default" type="button" id="copy-button7"
               data-toggle="tooltip" data-placement="bottom"
@@ -186,30 +185,41 @@
         <i class="fa fa-clipboard"></i>
       </button>
     </span>
-                                            </div>
-                                        </dd>
-                                        </dd>
+                                                    </div>
+                                                </dd>
+                                                </dd>
 
-                                    </dl>
+                                            </dl>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                    <? } ?>
+                    <div class="col-md-12 col-sm-12">
+                        <a class="btn btn-default" href="/websites/ftppass/<?php echo $h['id'] ?>" target="_blank">download
+                            .ftppass</a>
                     </div>
-                    <a class="btn btn-default" href="/websites/ftppass/<?php echo $h['id'] ?>" target="_blank">download .ftppass bestand</a>
-                <? } ?>
+                </div>
+
             <?php } else { ?>
-                <p>Er is nog geen hosting aanwezig bij deze website.</p><a href="/hosting/add" class="btn btn-primary">Hosting
+                <p>Er is nog geen hosting aanwezig bij deze website.</p><a href="/hosting/add"
+                                                                           class="btn btn-primary">Hosting
                     Toevoegen</a>
-
-
             <?php } ?>
+        </div>
+    </div>
+    <div class="col-md-5 col-sm-6">
+
+        <div class="well">
+            <h3>Account</h3>
+            <?php echo $this->element('customer', array('customer' => $customer)) ?>
+            <?php echo $this->element('accountmanager', array('user_data' => $website['Customer']['User'])) ?>
         </div>
     </div>
 
     <?php if ($website['Website']['uptimerobot_id'] != '0') { ?>
-        <div class="col-md-12 col-sm-12">
-            <?php echo $this->Element('monitoring'); ?>
-        </div>
+        <?php echo $this->Element('monitoring'); ?>
     <?php } ?>
 </div>
 
