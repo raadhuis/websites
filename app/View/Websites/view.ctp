@@ -40,7 +40,7 @@
                     door <?php echo $website['Hosting'][0]['User']['name']; ?>.</p>
 
                 <? foreach ($website["Hosting"] as $key => $h) { ?>
-                    <? pr($user_config) ?>
+                    <? pr($server_data) ?>
                     <h5><?php echo $h['Server']['name'] ?></h5>
                     <div class="panel-group" id="accordion<?php echo $key ?>">
                         <div class="panel panel-default">
