@@ -27,7 +27,7 @@
                     <th><?= $this->Form->input('customer_name', ['label'=>false,'placeholder' => 'Zoek op Organisatie','required'=>false])?></th>
                     <th><?= $this->Form->input('user_id', ['options'=>$users,'label'=>false,'empty' => 'Kies een Accountmanager...','required'=>false])?></th>
                     <th class="text-center"></th>
-                    <th><?php echo $this->Form->button('Zoeken', ['type' => 'submit','class'=>'btn btn-default']); ?></th>
+                    <th><?php echo $this->Form->button('Zoeken', ['type' => 'submit','class'=>'btn btn-info']); ?></th>
                 </tr>
                 <tbody>
                 <?php foreach ($websites as $website) { ?>

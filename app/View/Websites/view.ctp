@@ -40,7 +40,7 @@
                     door <?php echo $website['Hosting'][0]['User']['name']; ?>.</p>
 
                 <? foreach ($website["Hosting"] as $key => $h) { ?>
-                    <? pr($user_config)?>
+                    <? pr($user_config) ?>
                     <h5><?php echo $h['Server']['name'] ?></h5>
                     <div class="panel-group" id="accordion<?php echo $key ?>">
                         <div class="panel panel-default">
@@ -195,6 +195,7 @@
                             </div>
                         </div>
                     </div>
+                    <a class="btn btn-default" href="/websites/ftppass/<?php echo $h['id'] ?>" target="_blank">download .ftppass bestand</a>
                 <? } ?>
             <?php } else { ?>
                 <p>Er is nog geen hosting aanwezig bij deze website.</p><a href="/hosting/add" class="btn btn-primary">Hosting
