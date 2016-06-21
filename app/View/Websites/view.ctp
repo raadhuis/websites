@@ -263,7 +263,7 @@
                         </div>
                     <? } ?>
                     <div class="col-md-12 col-sm-12">
-                        <a class="btn btn-default" href="/websites/ftppass/<?php echo $h['id'] ?>" target="_blank">download
+                        <a class="btn btn-default" href="/websites/ftppass/<?php echo $h['website_id'] ?>" target="_blank">download
                             .ftppass</a>
                     </div>
                 </div>
