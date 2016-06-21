@@ -229,6 +229,8 @@ class WebsitesController extends AppController
 
         $sock = new HTTPSocket;
 
+        $server_data = [];
+
         foreach ($website['Hosting'] as $h) {
 
             $sock->connect($h['hostname'], 2222);
@@ -238,16 +240,17 @@ class WebsitesController extends AppController
             $sock->query('/CMD_API_SHOW_USER_USAGE', array(
                 'user' => $h['username']
             ));
-            $this->set("user_usage", $sock->fetch_parsed_body());
+            $server_data[$h['hostname']]['user_usage'] = $sock->fetch_parsed_body();
 
             $sock->query('/CMD_API_SHOW_USER_CONFIG', array(
                 'user' => $h['username']
             ));
 
-            $this->set("user_config", $sock->fetch_parsed_body());
+            $server_data[$h['hostname']]['user_config'] = $sock->fetch_parsed_body();
 
         }
 
+        $this->set('server_data', $server_data);
         $this->set('website', $website);
         $this->monitoring($id);
 
