@@ -27,7 +27,6 @@ foreach ($d as $f) {
 $a .= ']';
 $l .= ']';
 ?>
-<div class="row">
     <div class="col-md-3 col-sm-4">
         <div class="well">
             <h2>Online</h2>
@@ -35,8 +34,6 @@ $l .= ']';
             <canvas id="monitoringUptime"></canvas>
         </div>
     </div>
-</div>
-<div class="row">
     <div class="col-md-12 col-sm-12">
         <div class="well">
             <h2>Snelheid <small>Laatste 24 uur</small></h2>
@@ -44,7 +41,6 @@ $l .= ']';
             <canvas id="monitoringChart" height="100px"></canvas>
         </div>
     </div>
-</div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js" type="text/javascript"></script>
 <script>
     (function () {
