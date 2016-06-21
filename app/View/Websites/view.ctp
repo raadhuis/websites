@@ -34,13 +34,79 @@
 
                     <? foreach ($website["Hosting"] as $key => $h) { ?>
                         <div class="col-md-6 col-sm-12">
-                            <? if(isset($server_data[$h['Server']['name']])) { ?>
-
-                                <?php pr($server_data[$h['Server']['name']]['config']); ?>
-                                <?php pr($server_data[$h['Server']['name']]['usage']); ?>
-
+                            <h4><?php echo $h['Server']['name'] ?></h4>
+                            <? if (isset($server_data[$h['hostname']])) { ?>
+                                <dl>
+                                    <dt>Ipadres</dt>
+                                    <dd><?php echo $server_data[$h['hostname']]['config']['ip'] ?></dd>
+                                    <dt>Dataverkeer gebruik en limiet per maand</dt>
+                                    <dd>Huidig gebruik is <? echo round($server_data[$h['hostname']]['usage']['bandwidth'],2, PHP_ROUND_HALF_UP);?>MB en limiet is
+                                        <? echo $server_data[$h['hostname']]['config']['bandwidth']?>MB.
+                                        <?
+                                        $percentage = round((100 / $server_data[$h['hostname']]['config']['bandwidth']) * $server_data[$h['hostname']]['usage']['bandwidth'], 2, PHP_ROUND_HALF_UP);
+                                        ?>
+                                        <div class="progress">
+                                            <? if ($percentage < 75) { ?>
+                                                <div class="progress-bar progress-bar-success"
+                                                     style="width: <?= $percentage + 10 ?>%">
+                                                    <span><?= $percentage ?>%</span>
+                                                </div>
+                                                <div class="progress-bar progress-bar-default"
+                                                     style="width: <?= 100-$percentage-10 ?>%">
+                                                    <span><?= 100-$percentage ?>%</span>
+                                                </div>
+                                            <? } elseif ($percentage > 75 && $percentage < 100) { ?>
+                                                <div class="progress-bar progress-bar-danger"
+                                                     style="width: <?= $percentage ?>%">
+                                                    <span><?= $percentage ?>%</span>
+                                                </div>
+                                                <div class="progress-bar progress-bar-default"
+                                                     style="width: <?= 100-$percentage ?>%">
+                                                    <span><?= 100-$percentage ?>%</span>
+                                                </div>
+                                            <? } else { ?>
+                                                <div class="progress-bar progress-bar-danger"
+                                                     style="width: <?= $percentage ?>%">
+                                                    <span><?= $percentage ?>%</span>
+                                                </div>
+                                            <? } ?>
+                                        </div>
+                                    </dd>
+                                    <dt>Schijfruimte gebruik en limiet per maand</dt>
+                                    <dd>Huidig gebruik is <? echo round($server_data[$h['hostname']]['usage']['quota']+($server_data[$h['hostname']]['usage']['db_quota']/1024/1024),2, PHP_ROUND_HALF_UP);?>MB en limiet is
+                                        <? echo $server_data[$h['hostname']]['config']['quota']?>MB.
+                                        <?
+                                        $percentage = round((100 / $server_data[$h['hostname']]['config']['quota']) * $server_data[$h['hostname']]['usage']['quota']+($server_data[$h['hostname']]['usage']['db_quota']/1024/1024), 2, PHP_ROUND_HALF_UP);
+                                        ?>
+                                        <div class="progress">
+                                            <? if ($percentage < 75) { ?>
+                                                <div class="progress-bar progress-bar-success"
+                                                     style="width: <?= $percentage + 10 ?>%">
+                                                    <span><?= $percentage ?>%</span>
+                                                </div>
+                                                <div class="progress-bar progress-bar-default"
+                                                     style="width: <?= 100-$percentage-10 ?>%">
+                                                    <span><?= 100-$percentage ?>%</span>
+                                                </div>
+                                            <? } elseif ($percentage > 75 && $percentage < 100) { ?>
+                                                <div class="progress-bar progress-bar-danger"
+                                                     style="width: <?= $percentage ?>%">
+                                                    <span><?= $percentage ?>%</span>
+                                                </div>
+                                                <div class="progress-bar progress-bar-default"
+                                                     style="width: <?= 100-$percentage ?>%">
+                                                    <span><?= 100-$percentage ?>%</span>
+                                                </div>
+                                            <? } else { ?>
+                                                <div class="progress-bar progress-bar-danger"
+                                                     style="width: <?= $percentage ?>%">
+                                                    <span><?= $percentage ?>%</span>
+                                                </div>
+                                            <? } ?>
+                                        </div>
+                                    </dd>
+                                </dl>
                             <?php } ?>
-                            <h5><?php echo $h['Server']['name'] ?></h5>
                             <div class="panel-group" id="accordion<?php echo $key ?>">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
