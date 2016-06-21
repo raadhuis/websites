@@ -297,34 +297,42 @@ class WebsitesController extends AppController
 
         $this->request->data = $this->Website->find('first', $options);
 
-
         App::import('Vendor', 'webthumbnail/webthumbnail');
 
         $thumb = new Webthumbnail($this->request->data['Website']['url']);
 
         $path = tempnam(TMP, 'webthumbnail-');
+
+        unlink($path);
+        echo $path . "<br>";
         $thumb->setWidth(1024)->setHeight(1024)->setScreen(1024)->captureToFile($path);
         $this->request->data['Website']['1024'] = $path;
         @chmod($path, 0644);
         $path = tempnam(TMP, 'webthumbnail-');
+        unlink($path);
+        echo $path . "<br>";
         $thumb->setWidth(1024)->setHeight(1024)->setScreen(1280)->captureToFile($path);
         $this->request->data['Website']['1280'] = $path;
         @chmod($path, 0644);
         $path = tempnam(TMP, 'webthumbnail-');
+        unlink($path);
+        echo $path . "<br>";
         $thumb->setWidth(1024)->setHeight(1024)->setScreen(1650)->captureToFile($path);
         $this->request->data['Website']['1650'] = $path;
         @chmod($path, 0644);
         $path = tempnam(TMP, 'webthumbnail-');
+        unlink($path);
+        echo $path . "<br>";
         $thumb->setWidth(1024)->setHeight(1024)->setScreen(1920)->captureToFile($path);
         $this->request->data['Website']['1920'] = $path;
         @chmod($path, 0644);
 
 
         if ($this->Website->save($this->request->data)) {
-            $this->Session->setFlash(__('The website has been saved.'));
+            $this->Session->setFlash(__('The website has been saved.'), 'success');
             return $this->redirect(array('action' => 'view/' . $id));
         } else {
-            $this->Session->setFlash(__('The website could not be saved. Please, try again.'));
+            $this->Session->setFlash(__('The website could not be saved. Please, try again.'), 'error');
         }
     }
 
