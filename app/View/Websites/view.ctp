@@ -66,7 +66,7 @@
                                                 </div>
                                             <? } else { ?>
                                                 <div class="progress-bar progress-bar-danger"
-                                                     style="width: <?= $percentage ?>%">
+                                                     style="width: 100%">
                                                     <span><?= $percentage ?>%</span>
                                                 </div>
                                             <? } ?>
@@ -85,7 +85,7 @@
                                                     <span><?= $percentage ?>%</span>
                                                 </div>
                                                 <div class="progress-bar progress-bar-default"
-                                                     style="width: <?= 100-$percentage-10 ?>%">
+                                                     style="width: <?= (100-$percentage)-10 ?>%">
                                                     <span><?= 100-$percentage ?>%</span>
                                                 </div>
                                             <? } elseif ($percentage > 75 && $percentage < 100) { ?>
@@ -99,7 +99,7 @@
                                                 </div>
                                             <? } else { ?>
                                                 <div class="progress-bar progress-bar-danger"
-                                                     style="width: <?= $percentage ?>%">
+                                                     style="width: 100%">
                                                     <span><?= $percentage ?>%</span>
                                                 </div>
                                             <? } ?>
